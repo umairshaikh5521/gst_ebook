@@ -1,0 +1,43 @@
+$primary: #3563E9;
+$secondary :#212121;
+
+
+
+$mobileResolution: 767px;
+$ipadProResolution: 1024px;
+
+.btn-primary {
+  background-color:$primary;
+  padding: 0.5rem 1.6rem 0.5rem;
+  border: 1px solid $primary ;
+  font-size: 18px;
+  font-weight: 500 ;
+  color: #fff !important;
+  transition: 0.3s all;
+  line-height: 22px;
+  &.white{
+    border: 1px solid #fff;
+    color: $primary;
+    background-color:  #fff;
+    &:hover{
+      color:  #fff;
+      background: $primary;
+      border: 1px solid#fff;
+    }
+  }
+}
+
+
+
+a {
+  color: $primary;
+  text-decoration: none;
+}
+
+.white {
+  color: #fff !important;
+}
+
+.f24 {
+  font-size: 24px;
+}
