@@ -37,8 +37,22 @@ input, select{
 
 .navbar {
   background-color: #fff;
-  // top: 70px;
   transition: 0.3s ease-in-out all;
+  display: flex;
+  align-items: center;
+  .mobile-nav{
+    display: flex ;
+    justify-content: space-between;
+    .navbar-brand{
+      @media only screen and (max-width:$mobileResolution) {
+        display: block !important;        
+      }
+      display: none;
+    }
+
+  }
+
+
   .container {
     width: 1920px !important;
     max-width: 100% !important;
@@ -483,6 +497,12 @@ input, select{
         margin-bottom: 24px;
         border: 0;
         height: 77px;
+        box-shadow: none;
+
+        p{
+          width: 85%;
+          margin: 0;
+        }
 
         &::after{
           background: #FFFFFF;
@@ -501,7 +521,7 @@ input, select{
       font-size: 16px;
       line-height: 24px;
       color: #757575;
-
+      
     }
   }
 }
@@ -509,13 +529,50 @@ input, select{
 
 .footer{
   background: #EFF3FD;
-  padding-top: 26px;
-  padding-bottom: 26px;
+  
+  .left-right-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  span{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    margin-left: 15px;
+    @media only screen and (max-width:1000px) {
+      flex-direction: column;
+    }
+
+    .left{
+      padding-top: 26px;
+      padding-bottom: 26px;
+
+      span{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 15px;
+      }
+    }
+
+    .right{
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+
+      a{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        color: $secondary;
+
+        @media only screen and (max-width:600px) {
+          flex-basis: 45%;
+          text-align: center;
+        }
+
+        @media only screen and (max-width:350px){
+          flex-basis: 100%;
+        }
+      }
+    }
   }
 }
+
+

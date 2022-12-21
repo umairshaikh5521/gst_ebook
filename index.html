@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./assets/styles/css/main.css" />
 </head>
 
@@ -21,12 +22,17 @@
 
   <nav class="navbar navbar-expand-lg navbr-minus-margin fixed-top">
     <div class="container-new">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <div class="mobile-nav">
         <a class="navbar-brand" href="/">
+          <img src="/assets/images/logo.svg" alt="logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <a class="navbar-brand screen-nav" href="/">
           <img src="/assets/images/logo.svg" alt="logo" />
         </a>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -61,7 +67,7 @@
   <div class="home-page">
     <div class="banner-section">
       <div class="container-new">
-        <img class="banner-image" src="/assets/images/bannerimage.png" alt="">
+
         <img class="shape1" src="/assets/images/banner-bg-shape.svg" alt="">
         <img class="shape2" src="/assets/images/banner-bg-shape.svg" alt="">
         <div class="sectionTitle">Arcu suscipit massa aliquam proin amet</div>
@@ -71,44 +77,100 @@
           <a href="#" class="btn-primary">Get Started</a>
           <a href="#" class="btn-secondary">Start free trial</a>
         </div>
-      </div>
-    </div>
-
-
-    <div class="about-us">
-      <div class="container-new">
-        <div class="left-right-wrap">
-          <div class="left">
-            <div class="sectionTitle">About Us</div>
-            <div class="paragraph-wrap">
-              <p>GST E-Book is content curation platform and continuing online Education platform for ser professionals
-                and
-                beginners
-                under GST Laws only. We Provide access to almost all judgements, seders notifications, circulars and
-                real
-                time
-                amendments, modification of sections, rules and HSN Codes relevant notifications and press notes under
-                GST
-                Laws.
-                All
-                above said contents as appearing on CBC site, GSTN portal and other authentic reliable source.</p>
-              <p>Our moto is to empower Tax Professionals for their advancements in GST law only with ease of knowledge
-                at
-                one
-                place.</p>
+        <div class="mySwiper-wrap">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img class="banner-image" src="/assets/images/banner-img.png" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img class="banner-image" src="/assets/images/banner-img.png" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img class="banner-image" src="/assets/images/banner-img.png" alt="">
+              </div>
             </div>
-            <a class="btn-primary" href="#">Start Free Trial</a>
-          </div>
-
-          <div class="right">
-            <img src="/assets/images/about-us-img.png" alt="">
+            <div class="button-next">
+              <img src="/assets/images/next.png" alt="">
+            </div>
+            <div class="button-prev">
+              <img src="/assets/images/prev.png" alt="">
+            </div>
+            <div class="swiper-pagination"></div>
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="features-section">
+    <div class="new-feature-section">
+      <div class="container-new">
+        <div class="sectionTitle">Features</div>
+        <div class="feature-wrap">
+          <div class="features">
+            <img src="/assets/images/feature/f1.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f2.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f3.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f4.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f5.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f6.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f7.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f7.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f8.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f9.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+          <div class="features">
+            <img src="/assets/images/feature/f10.png" alt="">
+            <div class="f-title">GST Act, 2017</div>
+            <p>It contains bare Act language of the Act</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="features-section">
       <div class="container-new">
         <div class="sectionTitle">Features</div>
         <div class="feature-wrap">
@@ -195,11 +257,62 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
+
+
     <div class="how-it-works">
       <div class="container-new">
         <div class="sectionTitle">How Its Work</div>
-        <div class="left-right-wrap">
+        <div class="d-flex align-items-start tab-wrap">
+          <div class="left-right-wrap">
+            <div class="left">
+              <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                  aria-labelledby="v-pills-home-tab">
+                  <img src="/assets/images/how-it-works-img.png" alt="">
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  <img src="/assets/images/how-it-works-img.png" alt="">
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                  <img src="/assets/images/how-it-works-img.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                  aria-selected="true">
+                  <div class="span-wrap">
+                    <span class="tab-count">01</span>
+                    <span class="tab-name">Login</span>
+                  </div>
+                  <img src="/assets/images/t1.png" alt="">
+                </button>
+                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                  aria-selected="false">
+                  <div class="span-wrap">
+                    <span class="tab-count">02</span>
+                    <span class="tab-name">Dashboard</span>
+                  </div>
+                  <img src="/assets/images/f2.png" alt="">
+                </button>
+                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                  aria-selected="false">
+                  <div class="span-wrap">
+                    <span class="tab-count">03</span>
+                    <span class="tab-name">Subscribe</span>
+                  </div>
+                  <img src="/assets/images/f3.png" alt="">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="left-right-wrap">
           <div class="left">
             <img src="/assets/images/how-it-works-img.png" alt="">
           </div>
@@ -240,7 +353,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -256,7 +369,7 @@
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                   aria-expanded="true" aria-controls="collapseOne">
-                  1.How To Access the GST E-Book ?
+                  <p>1.How To Access the GST E-Book ?</p>
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -277,7 +390,7 @@
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  2.What are the objective of GST E-book ?
+                  <p>2.What are the objective of GST E-book ?</p>
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -337,13 +450,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
+              <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                  aria-expanded="true" aria-controls="collapseFive">
                   1.How To Access the GST E-Book ?
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <p>Step 1: Navigate to the homepage of the GST e-Book website using its URL
@@ -359,13 +472,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h2 class="accordion-header" id="headingSix">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                   2.What are the objective of GST E-book ?
                 </button>
               </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
@@ -380,13 +493,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h2 class="accordion-header" id="headingSeven">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                   3.Which users can access the GST E-Book module ?
                 </button>
               </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
@@ -401,13 +514,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
+              <h2 class="accordion-header" id="headingEiight">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  data-bs-target="#collapseEiight" aria-expanded="false" aria-controls="collapseEiight">
                   4.How to access Acts in GST E-book ?
                 </button>
               </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              <div id="collapseEiight" class="accordion-collapse collapse" aria-labelledby="headingEiight"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
@@ -422,13 +535,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
+              <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine"
+                  aria-expanded="true" aria-controls="collapseNine">
                   1.How To Access the GST E-Book ?
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              <div id="collapseNine" class="accordion-collapse collapse show" aria-labelledby="headingNine"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <p>Step 1: Navigate to the homepage of the GST e-Book website using its URL
@@ -444,13 +557,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h2 class="accordion-header" id="headingTen">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                   2.What are the objective of GST E-book ?
                 </button>
               </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse
@@ -465,13 +578,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h2 class="accordion-header" id="headingElevel">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  data-bs-target="#collapseElevel" aria-expanded="false" aria-controls="collapseElevel">
                   3.Which users can access the GST E-Book module ?
                 </button>
               </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              <div id="collapseElevel" class="accordion-collapse collapse" aria-labelledby="headingElevel"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
@@ -486,13 +599,13 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
+              <h2 class="accordion-header" id="headingTwelve">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
                   4.How to access Acts in GST E-book ?
                 </button>
               </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
@@ -506,6 +619,144 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="testimonial-section">
+      <div class="container-new">
+        <div class="sectionTitle">Testimonial</div>
+        <p>Luctus felis sit lectus tristique diam ornare bibendum. Arcu auctor suspendisse luctus amet bibendum
+          pellentesque lorem.
+          Malesuada lobortis tristique tortor,</p>
+
+        <div class="swiper mySwiper2">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="profile-mid-wrap">
+                <div class="profile">
+                  <div class="left">
+                    <img src="/assets/images/testimonial1.png" alt="">
+                  </div>
+                  <div class="right">
+                    <div class="name">Monica Shah</div>
+                    <div class="position">CEO, Co Founder</div>
+                    <div class="stars">
+                      <img src="/assets/images/stars.png" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="mid">
+                  We respect our customer opinions and deals with them with perfect wireframing.We respect our customer
+                  opinions and deals
+                  with them with perfect wireframing.We respect our customer opinions and deals with them with perfect
+                  wireframing.
+                </div>
+              </div>
+              <div class="links">
+                <a href="#"><img src="/assets/images/linkedin.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/Facebook.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/instagram.svg" alt=""></a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="profile-mid-wrap">
+                <div class="profile">
+                  <div class="left">
+                    <img src="/assets/images/testimonial2.png" alt="">
+                  </div>
+                  <div class="right">
+                    <div class="name">Monica Shah</div>
+                    <div class="position">CEO, Co Founder</div>
+                    <div class="stars">
+                      <img src="/assets/images/stars.png" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="mid">
+                  We respect our customer opinions and deals with them with perfect wireframing.We respect our customer
+                  opinions and deals
+                  with them with perfect wireframing.We respect our customer opinions and deals with them with perfect
+                  wireframing.
+                </div>
+              </div>
+              <div class="links">
+                <a href="#"><img src="/assets/images/linkedin.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/Facebook.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/instagram.svg" alt=""></a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="profile-mid-wrap">
+                <div class="profile">
+                  <div class="left">
+                    <img src="/assets/images/testimonial2.png" alt="">
+                  </div>
+                  <div class="right">
+                    <div class="name">Monica Shah</div>
+                    <div class="position">CEO, Co Founder</div>
+                    <div class="stars">
+                      <img src="/assets/images/stars.png" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="mid">
+                  We respect our customer opinions and deals with them with perfect wireframing.We respect our customer
+                  opinions and deals
+                  with them with perfect wireframing.We respect our customer opinions and deals with them with perfect
+                  wireframing.
+                </div>
+              </div>
+              <div class="links">
+                <a href="#"><img src="/assets/images/linkedin.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/Facebook.svg" alt=""></a>
+                <a href="#"><img src="/assets/images/instagram.svg" alt=""></a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="button-next">
+          <img src="/assets/images/next.png" alt="">
+        </div>
+        <div class="button-prev">
+          <img src="/assets/images/prev.png" alt="">
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="about-us">
+      <div class="container-new">
+        <div class="left-right-wrap">
+          <div class="left">
+            <div class="sectionTitle">About Us</div>
+            <div class="paragraph-wrap">
+              <p>GST E-Book is content curation platform and continuing online Education platform for ser professionals
+                and
+                beginners
+                under GST Laws only. We Provide access to almost all judgements, seders notifications, circulars and
+                real
+                time
+                amendments, modification of sections, rules and HSN Codes relevant notifications and press notes under
+                GST
+                Laws.
+                All
+                above said contents as appearing on CBC site, GSTN portal and other authentic reliable source.</p>
+              <p>Our moto is to empower Tax Professionals for their advancements in GST law only with ease of knowledge
+                at
+                one
+                place.</p>
+            </div>
+            <a class="btn-primary" href="#">Start Free Trial</a>
+          </div>
+
+          <div class="right">
+            <img src="/assets/images/about-us-img.png" alt="">
           </div>
         </div>
       </div>
@@ -560,7 +811,7 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <input type="number" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Number">
+                  <input type="tel" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Number">
                 </div>
               </div>
               <div class="row">
@@ -587,15 +838,76 @@
       ------------------------------------------------------------------------------------------------------------>
   <div class="footer">
     <div class="container-new">
-      <img src="/assets/images/logo.svg" alt="">
-      <span>Copy right reserved</span>
+      <div class="left-right-wrap">
+        <div class="left">
+          <img src="/assets/images/logo.svg" alt="">
+          <span>Copy right reserved</span>
+        </div>
+        <div class="right">
+          <a href="#">Home</a>
+          <a href="#">About Us</a>
+          <a href="#">How It Works</a>
+          <a href="#">Features</a>
+          <a href="#">FAQ</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      navigation: {
+        nextEl: ".button-next",
+        prevEl: ".button-prev",
+      },
+      loop: true,
+      keyboard: true,
+      slidesPerView: 1,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+
+    var swiper = new Swiper(".mySwiper2", {
+      navigation: {
+        nextEl: ".button-next",
+        prevEl: ".button-prev",
+      },
+      loop: true,
+      keyboard: true,
+      slidesPerView: 2,
+      spaceBetween: 20,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      breakpoints: {
+        100: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        1100: {
+          slidesPerView: 2,
+          spaceBetween: 50,
+        },
+      },
+    });
+
+
+    // var swiper = new Swiper(".mySwiper2", {
+    //   slidesPerView: 2,
+    //   spaceBetween: 30,
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //     clickable: true,
+    //   },
+    // });
+  </script>
 
 </body>
 
