@@ -40,17 +40,7 @@ input, select{
   transition: 0.3s ease-in-out all;
   display: flex;
   align-items: center;
-  .mobile-nav{
-    display: flex ;
-    justify-content: space-between;
-    .navbar-brand{
-      @media only screen and (max-width:$mobileResolution) {
-        display: block !important;        
-      }
-      display: none;
-    }
-
-  }
+  
 
 
   .container {
@@ -68,9 +58,33 @@ input, select{
     }
   }
 
+  .mobile-nav{
+    display: flex ;
+    justify-content: space-between;
+    .navbar-brand{
+      @media only screen and (max-width:$mobileResolution) {
+        display: block !important;        
+      }
+
+      @media only screen and (max-width:5000px){
+        display: none;
+
+      }
+    }
+
+  }
+
   .navbar-collapse {
     @media only screen and (max-width: $mobileResolution) {
       padding-top: 0.5rem;
+    }
+
+    .screen-nav{
+      display: block !important;
+      @media only screen and (max-width: $mobileResolution){
+        display: none !important;
+
+      }
     }
     
   }
@@ -480,6 +494,7 @@ input, select{
   .accordion-item{
     border: 0;
     flex-basis: 49%;
+    max-width: 100%;
 
     @media only screen and (max-width:1000px){
       flex-basis: 100%;
@@ -498,6 +513,10 @@ input, select{
         border: 0;
         height: 77px;
         box-shadow: none;
+        
+        @media only screen and (max-width:$mobileResolution) {
+          font-size: 16px;
+        }
 
         p{
           width: 85%;

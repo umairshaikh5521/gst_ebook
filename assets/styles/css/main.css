@@ -43,7 +43,7 @@ a {
 }
 
 .banner-section {
-  background: url("/assets/images/banner.jpg");
+  background-color: #3563E9;
   background-size: cover;
   min-height: 736px;
   max-width: 1920px;
@@ -61,12 +61,19 @@ a {
   margin-left: auto;
   margin-right: auto;
   padding-top: 132px;
+  color: #fff;
 }
 @media only screen and (max-width: 800px) {
   .banner-section .sectionTitle {
     font-size: 32px;
     line-height: 37px;
     width: 90%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .banner-section .sectionTitle {
+    margin-bottom: 20px;
+    padding-top: 85px;
   }
 }
 .banner-section p {
@@ -78,12 +85,14 @@ a {
   margin-left: auto;
   margin-right: auto;
   padding-top: 20px;
+  color: #fff;
 }
 @media only screen and (max-width: 600px) {
   .banner-section p {
     margin: 0;
     font-size: 13px;
     line-height: 16px;
+    margin-bottom: 20px;
   }
 }
 .banner-section .buttons {
@@ -115,6 +124,7 @@ a {
     margin-bottom: 15px;
     width: 100%;
     text-align: center;
+    margin-bottom: 20px;
   }
 }
 .banner-section .mySwiper-wrap {
@@ -207,6 +217,26 @@ a {
     width: 90%;
   }
 }
+@media only screen and (max-width: 500px) {
+  .banner-section .mySwiper-wrap {
+    bottom: 3%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .banner-section .mySwiper-wrap {
+    bottom: 2%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .banner-section .mySwiper-wrap {
+    bottom: 7%;
+  }
+}
+@media only screen and (max-width: 305px) {
+  .banner-section .mySwiper-wrap {
+    bottom: 10%;
+  }
+}
 .banner-section .mySwiper-wrap .mySwiper {
   position: relative;
 }
@@ -228,6 +258,16 @@ a {
     height: 40px;
   }
 }
+@media only screen and (max-width: 500px) {
+  .banner-section .mySwiper-wrap .mySwiper .button-next {
+    top: 85%;
+    right: calc(50% - 70px);
+  }
+  .banner-section .mySwiper-wrap .mySwiper .button-next img {
+    width: 30px;
+    height: 30px;
+  }
+}
 .banner-section .mySwiper-wrap .mySwiper .button-prev {
   position: absolute;
   top: 30%;
@@ -246,6 +286,16 @@ a {
     height: 40px;
   }
 }
+@media only screen and (max-width: 500px) {
+  .banner-section .mySwiper-wrap .mySwiper .button-prev {
+    top: 85%;
+    left: calc(50% - 70px);
+  }
+  .banner-section .mySwiper-wrap .mySwiper .button-prev img {
+    width: 30px;
+    height: 30px;
+  }
+}
 .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
   bottom: 5%;
   width: 20%;
@@ -261,16 +311,21 @@ a {
 }
 @media only screen and (max-width: 500px) {
   .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 3%;
+    bottom: 5%;
     left: 50%;
     transform: translate(-50%);
   }
 }
 @media only screen and (max-width: 450px) {
   .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 2%;
+    bottom: 6%;
     left: 50%;
     transform: translate(-50%);
+  }
+}
+@media only screen and (max-width: 400px) {
+  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
+    bottom: 4%;
   }
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-pagination .swiper-pagination-bullet {
@@ -281,6 +336,11 @@ a {
   .banner-section .mySwiper-wrap .mySwiper .swiper-pagination .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination .swiper-pagination-bullet-active {
+    background: #212121 !important;
   }
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide {
@@ -359,7 +419,6 @@ a {
   .new-feature-section .sectionTitle {
     font-size: 32px;
     line-height: 37px;
-    width: 90%;
   }
 }
 .new-feature-section .feature-wrap {
@@ -497,6 +556,7 @@ a {
   margin-right: auto;
   background-color: #3563E9;
   padding-top: 60px;
+  padding-bottom: 60px;
 }
 .how-it-works .sectionTitle {
   font-weight: 700;
@@ -689,26 +749,18 @@ a {
 }
 @media only screen and (max-width: 800px) {
   .testimonial-section .button-next {
-    bottom: -46%;
-    right: 35%;
-  }
-}
-@media only screen and (max-width: 627px) {
-  .testimonial-section .button-next {
-    bottom: -47%;
-    right: 35%;
+    bottom: -42%;
+    right: calc(50% - 100px);
   }
 }
 @media only screen and (max-width: 626px) {
   .testimonial-section .button-next {
     bottom: -46%;
-    right: 30%;
   }
 }
 @media only screen and (max-width: 445px) {
   .testimonial-section .button-next {
     bottom: -60%;
-    right: 25%;
   }
 }
 .testimonial-section .button-prev {
@@ -719,32 +771,39 @@ a {
 }
 @media only screen and (max-width: 800px) {
   .testimonial-section .button-prev {
-    bottom: -46%;
-    left: 35%;
-  }
-}
-@media only screen and (max-width: 627px) {
-  .testimonial-section .button-prev {
-    bottom: -47%;
-    left: 35%;
+    bottom: -42%;
+    left: calc(50% - 100px);
   }
 }
 @media only screen and (max-width: 626px) {
   .testimonial-section .button-prev {
     bottom: -46%;
-    left: 30%;
+    left: calc(50% - 100px);
   }
 }
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 450px) {
   .testimonial-section .button-prev {
     bottom: -60%;
-    left: 25%;
+    left: calc(50% - 100px);
+  }
+}
+@media only screen and (max-width: 352px) {
+  .testimonial-section .button-prev {
+    left: 22%;
   }
 }
 .testimonial-section .mySwiper2 {
   padding-bottom: 100px;
   position: relative;
   width: 80%;
+}
+.testimonial-section .mySwiper2 .swiper-pagination {
+  bottom: 0;
+}
+@media only screen and (max-width: 352px) {
+  .testimonial-section .mySwiper2 .swiper-pagination {
+    bottom: 25px;
+  }
 }
 .testimonial-section .mySwiper2 .swiper-pagination .swiper-pagination-bullet {
   width: 15px;
@@ -994,18 +1053,6 @@ input:focus, select:focus {
   display: flex;
   align-items: center;
 }
-.navbar .mobile-nav {
-  display: flex;
-  justify-content: space-between;
-}
-.navbar .mobile-nav .navbar-brand {
-  display: none;
-}
-@media only screen and (max-width: 767px) {
-  .navbar .mobile-nav .navbar-brand {
-    display: block !important;
-  }
-}
 .navbar .container {
   width: 1920px !important;
   max-width: 100% !important;
@@ -1022,9 +1069,31 @@ input:focus, select:focus {
     width: 120px;
   }
 }
+.navbar .mobile-nav {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 767px) {
+  .navbar .mobile-nav .navbar-brand {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 5000px) {
+  .navbar .mobile-nav .navbar-brand {
+    display: none;
+  }
+}
 @media only screen and (max-width: 767px) {
   .navbar .navbar-collapse {
     padding-top: 0.5rem;
+  }
+}
+.navbar .navbar-collapse .screen-nav {
+  display: block !important;
+}
+@media only screen and (max-width: 767px) {
+  .navbar .navbar-collapse .screen-nav {
+    display: none !important;
   }
 }
 .navbar .navbar-toggler {
@@ -1126,6 +1195,7 @@ input:focus, select:focus {
 .accordion .accordion-item {
   border: 0;
   flex-basis: 49%;
+  max-width: 100%;
 }
 @media only screen and (max-width: 1000px) {
   .accordion .accordion-item {
@@ -1143,6 +1213,11 @@ input:focus, select:focus {
   border: 0;
   height: 77px;
   box-shadow: none;
+}
+@media only screen and (max-width: 767px) {
+  .accordion .accordion-item .accordion-header .accordion-button {
+    font-size: 16px;
+  }
 }
 .accordion .accordion-item .accordion-header .accordion-button p {
   width: 85%;

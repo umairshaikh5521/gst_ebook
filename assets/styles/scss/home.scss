@@ -4,7 +4,8 @@
 
 
 .banner-section{
-  background: url("/assets/images/banner.jpg");
+  // background: url("/assets/images/banner.jpg");
+  background-color: $primary;
   background-size: cover;
   min-height: 736px;
   max-width: 1920px;
@@ -22,11 +23,17 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 132px;
+    color: #fff;
 
     @media only screen and (max-width:800px) {
       font-size: 32px;
       line-height: 37px;
       width: 90%;
+    }
+
+    @media only screen and (max-width:600px){
+      margin-bottom: 20px;
+      padding-top: 85px;
     }
   }
   
@@ -39,11 +46,13 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 20px;
+    color: #fff;
 
     @media only screen and (max-width:600px){
       margin: 0;
       font-size: 13px;
       line-height: 16px;
+      margin-bottom: 20px;
     }
 
   }
@@ -74,6 +83,7 @@
         margin-bottom: 15px;
         width: 100%;
         text-align: center;
+        margin-bottom: 20px;
       }
     }
   }
@@ -154,6 +164,22 @@
       width: 90%;
     }
 
+    @media only screen and (max-width:500px){
+      bottom: 3%;
+    }
+
+    @media only screen and (max-width:450px){
+      bottom: 2%;
+    }
+
+    @media only screen and (max-width:350px){
+      bottom: 7%;
+    }
+    
+    @media only screen and (max-width:305px){
+      bottom: 10%;
+    }
+
     .mySwiper{
       position: relative;
       .button-next{
@@ -171,6 +197,15 @@
           img{
             width: 40px;
             height: 40px;
+          }
+        }
+
+        @media only screen and (max-width:500px){
+          top: 85%;
+          right: calc(50% - 70px);
+          img{
+            width: 30px;
+            height: 30px;
           }
         }
       }
@@ -191,6 +226,14 @@
             height: 40px;
           }
         }
+        @media only screen and (max-width:500px){
+          top: 85%;
+          left: calc(50% - 70px);
+          img{
+            width: 30px;
+            height: 30px;
+          }
+        }
       }
 
       .swiper-pagination{
@@ -206,26 +249,37 @@
         }
 
         @media only screen and (max-width:500px){
-          bottom: 3%;
+          bottom: 5%;
           left: 50%;
         transform: translate(-50%);
         }
 
         @media only screen and (max-width:450px){
-          bottom: 2%;
+          bottom: 6%;
           left: 50%;
           transform: translate(-50%);
+        }
+
+        @media only screen and (max-width:400px){
+          bottom: 4%;
         }
 
         .swiper-pagination-bullet{
           width: 15px;
           height: 15px;
 
+          
           @media only screen and (max-width:800px) {
             width: 10px;
             height: 10px;
           }
+
         }
+        .swiper-pagination-bullet-active{
+            @media only screen and (max-width:500px){
+              background: $secondary !important;
+            }
+          }
       }
 
       .swiper-wrapper{
@@ -307,7 +361,6 @@
     @media only screen and (max-width:800px) {
       font-size: 32px;
       line-height: 37px;
-      width: 90%;
     }
   }
 
@@ -540,6 +593,7 @@
   margin-right: auto;
   background-color: $primary;
   padding-top: 60px;
+  padding-bottom: 60px;
 
   .sectionTitle{
     font-weight: 700;
@@ -768,86 +822,78 @@
   }
 
   .button-next{
-        position: absolute;
-        bottom: 25%;
-        right: 5%;
-        z-index: 1;
+    position: absolute;
+    bottom: 25%;
+    right: 5%;
+    z-index: 1;
 
-        @media only screen and (max-width:800px){
-          bottom: -46%;
-          right: 35%;
-        }
+    @media only screen and (max-width:800px){
+      bottom: -42%;
+      right: calc(50% - 100px);
+    }
 
-        @media only screen and (max-width:627px){
-          bottom: -47%;
-          right: 35%;
-        }
 
-        @media only screen and (max-width:626px){
-          bottom: -46%;
-          right: 30%;
-        }
+    @media only screen and (max-width:626px){
+      bottom: -46%;
+    }
 
-        @media only screen and (max-width:445px){
-          bottom: -60%;
-          right: 25%;
-        }
+    @media only screen and (max-width:445px){
+      bottom: -60%;
+    }
 
-        // @media only screen and (max-width:700px) {
-        //   img{
-        //     width: 40px;
-        //     height: 40px;
-        //   }
-        // }
+    // @media only screen and (max-width:352px){
+    //   right: 22%;
+    // }
+
+    }
+
+    .button-prev{
+      position: absolute;
+      bottom: 25%;
+      left: 5%;
+      z-index: 11;
+
+      @media only screen and (max-width:800px){
+        bottom: -42%;
+        left: calc(50% - 100px);
       }
 
-      .button-prev{
-        position: absolute;
-        bottom: 25%;
-        left: 5%;
-        z-index: 11;
-
-        @media only screen and (max-width:800px){
-          bottom: -46%;
-          left: 35%;
-        }
-
-        @media only screen and (max-width:627px){
-          bottom: -47%;
-          left: 35%;
-        }
-
-        @media only screen and (max-width:626px){
-          bottom: -46%;
-          left: 30%;
-        }
-
-        @media only screen and (max-width:445px){
-          bottom: -60%;
-          left: 25%;
-        }
-        // @media only screen and (max-width:700px) {
-        //   img{
-        //     width: 40px;
-        //     height: 40px;
-        //   }
-        // }
+      @media only screen and (max-width:626px){
+        bottom: -46%;
+        left: calc(50% - 100px);
       }
 
+      @media only screen and (max-width:450px){
+        bottom: -60%;
+        left: calc(50% - 100px);
+      }
 
-    .mySwiper2{
-      padding-bottom: 100px;
-      position: relative;
-      width: 80%;
+      @media only screen and (max-width:352px){
+        left: 22%;
+      }
 
-      .swiper-pagination{
-        .swiper-pagination-bullet{
-          width: 15px;
-          height: 15px;
-        }
+    }
+
+
+  .mySwiper2{
+    padding-bottom: 100px;
+    position: relative;
+    width: 80%;
+    
+    .swiper-pagination{
+      bottom: 0 ;
+      @media only screen and (max-width:352px){
+        bottom: 25px;
       }
       
+      .swiper-pagination-bullet{
+        width: 15px;
+        height: 15px;
+      }
+
     }
+    
+  }
   
   .swiper-slide{
     background-color: #fff;
