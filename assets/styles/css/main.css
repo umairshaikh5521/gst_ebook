@@ -40,6 +40,29 @@ a {
 
 .home-page {
   margin-top: 60px;
+  position: relative;
+}
+
+.get-started-btn {
+  position: fixed;
+  right: 0;
+  top: 60%;
+  transform: translateY(-50%);
+  background-color: #000;
+  z-index: 11111111111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 13px 12px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.get-started-btn:hover {
+  color: #3563E9;
+  background-color: #fff;
+}
+.get-started-btn .divider {
+  height: 15px;
 }
 
 .banner-section {
@@ -457,6 +480,7 @@ a {
   font-size: 20px;
   line-height: 24px;
   margin-bottom: 8px;
+  text-align: center;
 }
 .new-feature-section .feature-wrap .features p {
   font-weight: 400;
@@ -584,11 +608,16 @@ a {
 }
 @media only screen and (max-width: 1100px) {
   .how-it-works .left-right-wrap {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }
 .how-it-works .left-right-wrap .left {
-  width: 48%;
+  width: 40%;
+  position: relative;
+}
+.how-it-works .left-right-wrap .left .how-it-works {
+  margin: 0;
+  padding-top: 0;
 }
 @media only screen and (max-width: 1100px) {
   .how-it-works .left-right-wrap .left {
@@ -598,13 +627,35 @@ a {
 .how-it-works .left-right-wrap .left img {
   width: 100%;
 }
+.how-it-works .left-right-wrap .left .button-next {
+  position: absolute;
+  width: 60px;
+  bottom: 0;
+  z-index: 1111111;
+  right: 0;
+}
+.how-it-works .left-right-wrap .left .button-prev {
+  position: absolute;
+  width: 60px;
+  bottom: 0;
+  left: 0;
+  z-index: 11111111;
+}
+.how-it-works .left-right-wrap .left .swiper-pagination .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  background: #fff;
+}
+.how-it-works .left-right-wrap .left .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #000;
+}
 .how-it-works .left-right-wrap .right {
-  width: 38%;
+  width: 53%;
 }
 @media only screen and (max-width: 1100px) {
   .how-it-works .left-right-wrap .right {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 70px;
   }
 }
 @media only screen and (max-width: 1100px) {
@@ -678,6 +729,38 @@ a {
     height: 30px;
     width: 30px;
   }
+}
+.how-it-works .left-right-wrap .right .points-wrap {
+  display: flex;
+  margin-bottom: 45px;
+}
+.how-it-works .left-right-wrap .right .points-wrap .count {
+  background: #EFF3FD;
+  color: #3563E9;
+  border-radius: 5px;
+  padding: 33px 37px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 24px;
+  width: 90px;
+  height: 90px;
+}
+.how-it-works .left-right-wrap .right .points-wrap .points {
+  margin-left: 20px;
+}
+.how-it-works .left-right-wrap .right .points-wrap .points .title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+.how-it-works .left-right-wrap .right .points-wrap .points p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+  margin: 0;
 }
 
 .FAQ-section {
@@ -1013,7 +1096,15 @@ a {
   height: 180px;
 }
 .get-in-touch .left-right-wrap .right form .row:nth-of-type(4) .col input::placeholder {
+  text-align: start;
   margin-bottom: auto;
+}
+.get-in-touch .left-right-wrap .right form .form-control {
+  margin-bottom: 35px;
+  padding: 29px 41px;
+  border: 0;
+  background: #EFF3FD;
+  border-radius: 5px;
 }
 .get-in-touch .left-right-wrap .right form a {
   padding: 15px 80px;
