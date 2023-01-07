@@ -549,6 +549,9 @@ input, select{
 .footer{
   background: #EFF3FD;
   
+  @media only screen and (max-width:$mobileResolution) {
+  padding-bottom: 20px;
+  }
   .left-right-wrap{
     display: flex;
     align-items: center;
@@ -561,12 +564,22 @@ input, select{
     .left{
       padding-top: 26px;
       padding-bottom: 26px;
+      display: flex;
+      align-items: center;
+
+      @media only screen and (max-width:400px) {
+        flex-direction: column;
+      }
 
       span{
         font-weight: 700;
         font-size: 14px;
         line-height: 17px;
         margin-left: 15px;
+
+        @media only screen and (max-width:400px){
+          margin-top: 10px;
+        }
       }
     }
 
