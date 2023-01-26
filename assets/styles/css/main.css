@@ -1162,14 +1162,20 @@ body {
   color: #212121;
 }
 
-input, select {
+input,
+select {
   outline: unset !important;
   box-shadow: unset !important;
   outline: 0 !important;
   box-shadow: 0 !important;
 }
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-color: #3563E9 !important;
+}
+
+* {
+  scroll-margin-top: 6rem;
 }
 
 .container-new {
@@ -1345,7 +1351,7 @@ input:focus, select:focus {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.2px;
-  background: #EFF3FD;
+  background: #eff3fd;
   border-radius: 5px;
   margin-bottom: 24px;
   border: 0;
@@ -1362,9 +1368,9 @@ input:focus, select:focus {
   margin: 0;
 }
 .accordion .accordion-item .accordion-header .accordion-button::after {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 5px;
-  color: #3563E9;
+  color: #3563e9;
   background-image: url("/assets/images/down-arrow.svg") !important;
   background-repeat: no-repeat;
   background-position: center;
@@ -1378,7 +1384,7 @@ input:focus, select:focus {
 }
 
 .footer {
-  background: #EFF3FD;
+  background: #eff3fd;
 }
 @media only screen and (max-width: 767px) {
   .footer {
