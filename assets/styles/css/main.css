@@ -58,8 +58,8 @@ a {
   transition: 0.3s;
 }
 .get-started-btn:hover {
-  color: #3563E9;
-  background-color: #fff;
+  color: #fff !important;
+  background-color: #000;
 }
 .get-started-btn .divider {
   height: 15px;
@@ -122,6 +122,8 @@ a {
   display: flex;
   justify-content: center;
   padding-top: 20px;
+  position: relative;
+  z-index: 111;
 }
 @media only screen and (max-width: 600px) {
   .banner-section .buttons {
@@ -735,8 +737,8 @@ a {
   margin-bottom: 45px;
 }
 .how-it-works .left-right-wrap .right .points-wrap .count {
-  background: #EFF3FD;
-  color: #3563E9;
+  background: #eff3fd;
+  color: #3563e9;
   border-radius: 5px;
   padding: 33px 37px;
   font-weight: 600;
@@ -995,7 +997,7 @@ a {
 }
 
 .get-started {
-  background: #3563E9;
+  background: #3563e9;
   padding-top: 90px;
   padding-bottom: 90px;
   max-width: 1920px;
@@ -1030,7 +1032,7 @@ a {
 }
 .get-started .title-form-wrap .input-group button {
   background: #fff;
-  color: #A6A6A6;
+  color: #a6a6a6;
   border: 0;
   box-shadow: none;
   display: flex;
@@ -1047,7 +1049,7 @@ a {
   }
 }
 .get-started .title-form-wrap .input-group button img {
-  border: 1px solid #3563E9;
+  border: 1px solid #3563e9;
   padding: 5px;
   border-radius: 5px;
   margin-right: 12px;
@@ -1125,7 +1127,7 @@ a {
 .get-in-touch .left-right-wrap .right form .row .col input {
   padding: 29px 41px;
   border: 0;
-  background: #EFF3FD;
+  background: #eff3fd;
   border-radius: 5px;
   margin-bottom: 16px;
 }
@@ -1150,7 +1152,7 @@ a {
   margin-bottom: 35px;
   padding: 29px 41px;
   border: 0;
-  background: #EFF3FD;
+  background: #eff3fd;
   border-radius: 5px;
 }
 .get-in-touch .left-right-wrap .right form a {
