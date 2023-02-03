@@ -57,6 +57,11 @@ a {
   border-radius: 5px;
   transition: 0.3s;
 }
+@media only screen and (max-width: 767px) {
+  .get-started-btn {
+    display: none;
+  }
+}
 .get-started-btn:hover {
   color: #fff !important;
   background-color: #000;
@@ -80,7 +85,7 @@ a {
   line-height: 68px;
   color: #212121;
   text-align: center;
-  max-width: 900px;
+  max-width: 760px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 132px;
@@ -458,7 +463,7 @@ a {
   }
 }
 .new-feature-section .feature-wrap .features {
-  flex-basis: 30%;
+  flex-basis: 46%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1004,11 +1009,6 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-@media only screen and (max-width: 767px) {
-  .get-started {
-    display: none;
-  }
-}
 .get-started .title-form-wrap {
   display: flex;
   flex-direction: column;
@@ -1162,6 +1162,24 @@ a {
 }
 .get-in-touch .left-right-wrap .right form a {
   padding: 15px 80px;
+}
+
+.tnc-page {
+  padding-top: 10rem;
+  min-height: calc(100vh - 100px);
+}
+@media only screen and (max-width: 767px) {
+  .tnc-page {
+    padding-top: 7rem;
+  }
+}
+.tnc-page h1 {
+  font-weight: 700;
+}
+.tnc-page .sec-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-decoration: underline;
 }
 
 body {
