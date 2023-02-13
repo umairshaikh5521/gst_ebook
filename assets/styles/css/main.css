@@ -1,5 +1,5 @@
 .btn-primary {
-  background-color: #3563E9;
+  background-color: #3393ff;
   padding: 0.5rem 1.6rem 0.5rem;
   border: 1px solid #fff;
   font-size: 18px;
@@ -10,7 +10,7 @@
 }
 .btn-primary:hover {
   color: #fff;
-  background: #3563E9;
+  background: #3393ff;
   border: 1px solid #fff;
 }
 
@@ -19,14 +19,14 @@
   border: 1px solid #fff;
   font-size: 18px;
   font-weight: 500;
-  color: #3563E9;
+  color: #3393ff;
   transition: 0.3s all;
   line-height: 22px;
   background: #fff;
 }
 
 a {
-  color: #3563E9;
+  color: #3393ff;
   text-decoration: none;
 }
 
@@ -71,7 +71,7 @@ a {
 }
 
 .banner-section {
-  background-color: #3563E9;
+  background-color: #3393ff;
   background-size: cover;
   min-height: 766px;
   max-width: 1920px;
@@ -591,7 +591,7 @@ a {
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #3563E9;
+  background-color: #3393ff;
   padding-top: 60px;
   padding-bottom: 60px;
 }
@@ -769,7 +769,7 @@ a {
 }
 .how-it-works .left-right-wrap .right .points-wrap .count {
   background: #eff3fd;
-  color: #3563e9;
+  color: #3393ff;
   border-radius: 5px;
   padding: 33px 37px;
   font-weight: 600;
@@ -828,7 +828,7 @@ a {
 }
 
 .testimonial-section {
-  background-color: #3563E9;
+  background-color: #3393ff;
   padding-top: 60px;
   padding-bottom: 60px;
   position: relative;
@@ -1048,7 +1048,7 @@ a {
 }
 
 .get-started {
-  background: #3563e9;
+  background: #3393ff;
   padding-top: 90px;
   padding-bottom: 90px;
   max-width: 1920px;
@@ -1100,7 +1100,7 @@ a {
   }
 }
 .get-started .title-form-wrap .input-group button img {
-  border: 1px solid #3563e9;
+  border: 1px solid #3393ff;
   padding: 5px;
   border-radius: 5px;
   margin-right: 12px;
@@ -1242,7 +1242,7 @@ select {
 }
 input:focus,
 select:focus {
-  border-color: #3563E9 !important;
+  border-color: #3393ff !important;
 }
 
 * {
@@ -1327,7 +1327,7 @@ select:focus {
   font-weight: 700;
 }
 .navbar .navbar-nav a.active {
-  color: #3563E9;
+  color: #3393ff;
   font-weight: 600;
   font-style: "Mukta";
 }
@@ -1441,7 +1441,7 @@ select:focus {
 .accordion .accordion-item .accordion-header .accordion-button::after {
   background: #ffffff;
   border-radius: 5px;
-  color: #3563e9;
+  color: #3393ff;
   background-image: url("/assets/images/down-arrow.svg") !important;
   background-repeat: no-repeat;
   background-position: center;

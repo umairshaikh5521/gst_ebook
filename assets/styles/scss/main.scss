@@ -521,7 +521,7 @@ select {
         &::after {
           background: #ffffff;
           border-radius: 5px;
-          color: #3563e9;
+          color: $primary;
           background-image: url("/assets/images/down-arrow.svg") !important;
           background-repeat: no-repeat;
           background-position: center;

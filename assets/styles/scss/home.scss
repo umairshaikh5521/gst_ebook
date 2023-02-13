@@ -820,7 +820,7 @@
 
         .count {
           background: #eff3fd;
-          color: #3563e9;
+          color: $primary;
           border-radius: 5px;
           padding: 33px 37px;
           font-weight: 600;
@@ -1113,7 +1113,7 @@
 }
 
 .get-started {
-  background: #3563e9;
+  background: $primary;
   padding-top: 90px;
   padding-bottom: 90px;
   max-width: 1920px;
@@ -1164,7 +1164,7 @@
         }
 
         img {
-          border: 1px solid #3563e9;
+          border: 1px solid $primary;
           padding: 5px;
           border-radius: 5px;
           margin-right: 12px;

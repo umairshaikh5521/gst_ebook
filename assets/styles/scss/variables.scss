@@ -1,38 +1,35 @@
-$primary: #3563E9;
-$secondary :#212121;
-
-
+$primary: #3393ff;
+$secondary: #212121;
 
 $mobileResolution: 767px;
 $ipadProResolution: 1024px;
 
 .btn-primary {
-  background-color:$primary;
+  background-color: $primary;
   padding: 0.5rem 1.6rem 0.5rem;
   border: 1px solid #fff;
   font-size: 18px;
-  font-weight: 500 ;
+  font-weight: 500;
   color: #fff !important;
   transition: 0.3s all;
   line-height: 22px;
-    &:hover{
-      color:  #fff;
-      background: $primary;
-      border: 1px solid#fff;
+  &:hover {
+    color: #fff;
+    background: $primary;
+    border: 1px solid#fff;
   }
 }
 
-.btn-secondary{
+.btn-secondary {
   padding: 0.5rem 1.6rem 0.5rem;
   border: 1px solid #fff;
   font-size: 18px;
-  font-weight: 500 ;
+  font-weight: 500;
   color: $primary;
   transition: 0.3s all;
   line-height: 22px;
-  background:  #fff;
+  background: #fff;
 }
-
 
 a {
   color: $primary;
