@@ -93,9 +93,12 @@
         <img class="shape1" src="/assets/images/banner-bg-shape.svg" alt="">
         <img class="shape2" src="/assets/images/banner-bg-shape.svg" alt="">
         <div class="sectionTitle">Encyclopaedia of Indian GST Laws</div>
-        <p>GST E-Book is content curation platform and continuing online Education platform for ser professionals and beginners under GST Laws only.</p>
+        <p>GST E-Book is content curation platform and continuing online Updating platform for professionals and beginners under GST Laws only.</p>
         <div class="buttons">
-          <a href="#" class="btn-primary">₹ 500/Year <del>₹ 1500/Year </del> </a>
+          <a href="#" class="btn-primary"> <del>₹ 1500/Year </del> 
+          <br>
+          Introductory offer ₹ 500/Year
+          </a>
           <a href="#" class="btn-secondary">Start free trial</a>
         </div>
         <div class="mySwiper-wrap">
@@ -141,7 +144,7 @@
          
           <div class="features">
             <img src="/assets/images/feature/f6.png" alt="">
-            <div class="f-title">GST Appellate Authority Cases, GST Advance Ruling Authority Cases, GST Appellate Authority for advance Ruling Cases, High Court Cases Related GSTs & Supreme Court Cases Related to GST</div>
+            <div class="f-title">GST CASE LAWS</div>
             <p>We have provided updated GST Appellate Authority Cases, GST Advance Ruling Authority Cases, GST Appellate Authority for advance Ruling Cases, High Court Cases Related GSTs & Supreme Court Cases Related to GST.</p>
           </div>
           <!-- <div class="features">
@@ -171,7 +174,7 @@
             <p>We have also provided HSN & SAC codes. You can use the search tab for HSN or SAC Code or by using produce name or description with the word specified in CBIC clarifications with the help of separate search engine allotted to HSN &SAC Code. For your desire search you will find the HSN & SAC code along with its description and relevant tax rates.</p>
           </div>
         </div>
-        <h6 class="text-center">ALL THE CONTAINS OF THE ABOVE SAID FEATURES ARE COPIED FROM RELEVANT GOVERNMENT & AUTHENTICATE WEBSITES.</h6>
+        <h6 class="text-center fw-bold">ALL THE CONTAINS OF THE ABOVE SAID FEATURES ARE COPIED FROM RELEVANT GOVERNMENT & AUTHENTICATE WEBSITES.</h6>
       </div>
     </div>
 
@@ -323,17 +326,17 @@
         </div> -->
         <div class="left-right-wrap">
           <div class="left">
-            <div class="swiper how-it-works">
+            <div class="swiper how-it-works-swiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="/assets/images/how-it-works-img.png" alt=""></div>
                 <div class="swiper-slide"><img src="/assets/images/how-it-works-img.png" alt=""></div>
                 <div class="swiper-slide"><img src="/assets/images/how-it-works-img.png" alt=""></div>
               </div>
-              <div class="swiper-pagination"></div>
-              <div class="button-next">
+              <div class="swiper-pagination2"></div>
+              <div class="button-next button-next2">
                 <img src="/assets/images/next.png" alt="">
               </div>
-              <div class="button-prev">
+              <div class="button-prev2 button-prev">
                 <img src="/assets/images/prev.png" alt="">
               </div>
             </div>
@@ -1024,15 +1027,19 @@ The selected act/section/rule/regulation content will be automatically converted
       },
     });
 
-    var swiper = new Swiper(".how-it-works", {
+    var swiper = new Swiper(".how-it-works-swiper", {
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination2",
+      },
+       navigation: {
+        nextEl: ".button-next2",
+        prevEl: ".button-prev2",
+      },
+      autoplay:{
+        delay: 5000,
       },
       loop: true,
-      navigation: {
-        nextEl: ".button-next",
-        prevEl: ".button-prev",
-      }
+  
     });
 
 

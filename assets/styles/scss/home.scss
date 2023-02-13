@@ -33,7 +33,7 @@
   // background: url("/assets/images/banner.jpg");
   background-color: $primary;
   background-size: cover;
-  min-height: 736px;
+  min-height: 766px;
   max-width: 1920px;
   position: relative;
   margin-left: auto;
@@ -105,6 +105,7 @@
 
     .btn-primary {
       margin-right: 30px;
+      text-align: center;
       @media only screen and (max-width: 600px) {
         margin: 0;
         margin-bottom: 15px;
@@ -112,6 +113,11 @@
         text-align: center;
         margin-bottom: 20px;
       }
+    }
+    .btn-secondary {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
@@ -623,6 +629,54 @@
     }
   }
 
+  .swiper-slide {
+    padding-bottom: 4rem;
+  }
+  .swiper-pagination2 {
+    bottom: 5%;
+    // width: 20%;
+    left: 50%;
+    transform: translateY(-14px);
+    text-align: center;
+
+    // @media only screen and (max-width: 600px) {
+    //   bottom: 4%;
+    //   left: 50%;
+    //   transform: translate(-50%);
+    // }
+
+    // @media only screen and (max-width: 500px) {
+    //   bottom: 5%;
+    //   left: 50%;
+    //   transform: translate(-50%);
+    // }
+
+    // @media only screen and (max-width: 450px) {
+    //   bottom: 6%;
+    //   left: 50%;
+    //   transform: translate(-50%);
+    // }
+
+    // @media only screen and (max-width: 400px) {
+    //   bottom: 4%;
+    // }
+
+    .swiper-pagination-bullet {
+      width: 15px;
+      height: 15px;
+      background-color: #fff;
+      @media only screen and (max-width: 800px) {
+        width: 10px;
+        height: 10px;
+      }
+    }
+    .swiper-pagination-bullet-active {
+      @media only screen and (max-width: 500px) {
+        // background: $secondary !important;
+      }
+    }
+  }
+
   .tab-wrap {
     width: 100%;
   }
@@ -774,6 +828,15 @@
           line-height: 24px;
           width: 90px;
           height: 90px;
+
+          @media only screen and (max-width: $mobileResolution) {
+            min-width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+          }
         }
 
         .points {
@@ -927,6 +990,10 @@
     position: relative;
     width: 80%;
 
+    @media only screen and (max-width: $mobileResolution) {
+      width: 100%;
+    }
+
     .swiper-pagination {
       bottom: 0;
       @media only screen and (max-width: 352px) {
@@ -956,6 +1023,11 @@
     box-shadow: 0px 30px 104px rgba(0, 0, 0, 0.02),
       0px 24px 114px rgba(0, 0, 0, 0.04), 0px 10px 34px rgba(32, 32, 32, 0.08),
       0px 8px 40px rgba(0, 0, 0, 0.1);
+
+    @media only screen and (max-width: $mobileResolution) {
+      box-shadow: 0px -30px 4px rgb(0 0 0 / 2%), 0px -6px 4px rgb(1 0 0 / 4%),
+        0px 4px 4px rgb(32 32 32 / 8%), 0px 0px 0px rgb(0 0 0 / 10%);
+    }
 
     @media only screen and (max-width: 450px) {
       height: 450px;
