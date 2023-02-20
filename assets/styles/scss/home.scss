@@ -533,14 +533,22 @@
     }
     .right {
       width: 48%;
+      text-align: center;
 
       @media only screen and (max-width: 900px) {
         width: 100%;
+        // padding: 1rem;
       }
 
-      img {
-        width: 100%;
+      .author {
+        width: 200px;
+        border-radius: 50%;
+        margin-bottom: 10px;
       }
+
+      // img {
+      //   width: 100%;
+      // }
     }
   }
 }

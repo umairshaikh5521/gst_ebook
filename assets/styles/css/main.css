@@ -470,14 +470,17 @@ a {
 }
 .about-us .left-right-wrap .right {
   width: 48%;
+  text-align: center;
 }
 @media only screen and (max-width: 900px) {
   .about-us .left-right-wrap .right {
     width: 100%;
   }
 }
-.about-us .left-right-wrap .right img {
-  width: 100%;
+.about-us .left-right-wrap .right .author {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .how-it-works {
