@@ -43,6 +43,21 @@ a {
   position: relative;
 }
 
+.notice {
+  background-color: red;
+  padding: 10px;
+  width: 100%;
+  background-color: red;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  color: #fff;
+  z-index: 1111;
+  text-align: center;
+}
+
 .get-started-btn {
   position: fixed;
   right: 0;
@@ -73,11 +88,17 @@ a {
 .banner-section {
   background-color: #3393ff;
   background-size: cover;
-  min-height: 766px;
   max-width: 1920px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 26vw;
+  padding-top: 2rem;
+}
+@media only screen and (max-width: 650px) {
+  .banner-section {
+    padding-bottom: 120px;
+  }
 }
 .banner-section .sectionTitle {
   font-weight: 700;
@@ -166,111 +187,16 @@ a {
 .banner-section .mySwiper-wrap {
   position: relative;
   position: absolute;
-  bottom: -60%;
+  bottom: -35%;
   width: 80%;
   z-index: 1;
   left: 0;
   right: 0;
   margin: auto;
 }
-@media only screen and (max-width: 5000px) {
+@media only screen and (max-width: 650px) {
   .banner-section .mySwiper-wrap {
-    bottom: -90%;
-  }
-}
-@media only screen and (max-width: 1920px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -90%;
-  }
-}
-@media only screen and (max-width: 1800px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -95%;
-    width: 90%;
-  }
-}
-@media only screen and (max-width: 1700px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -90%;
-  }
-}
-@media only screen and (max-width: 1600px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -82%;
-  }
-}
-@media only screen and (max-width: 1500px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -74%;
-  }
-}
-@media only screen and (max-width: 1400px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -65%;
-  }
-}
-@media only screen and (max-width: 1300px) {
-  .banner-section .mySwiper-wrap {
-    width: 90%;
-    bottom: -60%;
-  }
-}
-@media only screen and (max-width: 1250px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -55%;
-  }
-}
-@media only screen and (max-width: 1150px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -50%;
-  }
-}
-@media only screen and (max-width: 1100px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -45%;
-  }
-}
-@media only screen and (max-width: 1024px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -37%;
-  }
-}
-@media only screen and (max-width: 1000px) {
-  .banner-section .mySwiper-wrap {
-    width: 90%;
-    bottom: -35%;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .banner-section .mySwiper-wrap {
-    width: 90%;
-    bottom: -30%;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .banner-section .mySwiper-wrap {
-    bottom: -20%;
-    width: 90%;
-  }
-}
-@media only screen and (max-width: 500px) {
-  .banner-section .mySwiper-wrap {
-    bottom: 3%;
-  }
-}
-@media only screen and (max-width: 450px) {
-  .banner-section .mySwiper-wrap {
-    bottom: 2%;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .banner-section .mySwiper-wrap {
-    bottom: 7%;
-  }
-}
-@media only screen and (max-width: 305px) {
-  .banner-section .mySwiper-wrap {
-    bottom: 10%;
+    bottom: -25%;
   }
 }
 .banner-section .mySwiper-wrap .mySwiper {
@@ -333,36 +259,11 @@ a {
   }
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-  bottom: 5%;
+  bottom: 0%;
   width: 20%;
   left: 50%;
   transform: translate(-50%);
-}
-@media only screen and (max-width: 600px) {
-  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 4%;
-    left: 50%;
-    transform: translate(-50%);
-  }
-}
-@media only screen and (max-width: 500px) {
-  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%);
-  }
-}
-@media only screen and (max-width: 450px) {
-  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 6%;
-    left: 50%;
-    transform: translate(-50%);
-  }
-}
-@media only screen and (max-width: 400px) {
-  .banner-section .mySwiper-wrap .mySwiper .swiper-pagination {
-    bottom: 4%;
-  }
+  width: auto;
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-pagination .swiper-pagination-bullet {
   width: 15px;
@@ -379,12 +280,25 @@ a {
     background: #212121 !important;
   }
 }
+.banner-section .mySwiper-wrap .mySwiper .swiper-wrapper {
+  padding-bottom: 4rem;
+}
 .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide {
   display: flex;
   justify-content: center;
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide .banner-image {
   width: 100%;
+  width: calc(100% - 10.4rem);
+}
+@media only screen and (max-width: 625px) {
+  .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide .banner-image {
+    width: 100%;
+    width: 290px;
+  }
+}
+.banner-section .usk-navigation {
+  position: relative;
 }
 .banner-section .shape1 {
   position: absolute;
@@ -418,30 +332,11 @@ a {
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 17vw;
 }
-@media only screen and (max-width: 5000px) {
+@media only screen and (max-width: 767px) {
   .new-feature-section {
-    margin-top: 650px;
-  }
-}
-@media only screen and (max-width: 1920px) {
-  .new-feature-section {
-    margin-top: 650px;
-  }
-}
-@media only screen and (max-width: 1400px) {
-  .new-feature-section {
-    margin-top: 450px;
-  }
-}
-@media only screen and (max-width: 1024px) {
-  .new-feature-section {
-    margin-top: 210px;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .new-feature-section {
-    margin-top: 250px;
+    margin-top: 29vw;
   }
 }
 .new-feature-section .sectionTitle {
@@ -1267,6 +1162,7 @@ select:focus {
   transition: 0.3s ease-in-out all;
   display: flex;
   align-items: center;
+  top: 44px;
 }
 .navbar .container {
   width: 1920px !important;
@@ -1288,12 +1184,12 @@ select:focus {
   display: flex;
   justify-content: space-between;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 990px) {
   .navbar .mobile-nav .navbar-brand {
     display: block !important;
   }
 }
-@media only screen and (max-width: 5000px) {
+@media only screen and (min-width: 990px) {
   .navbar .mobile-nav .navbar-brand {
     display: none;
   }

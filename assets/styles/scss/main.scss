@@ -43,6 +43,7 @@ select {
   transition: 0.3s ease-in-out all;
   display: flex;
   align-items: center;
+  top: 44px;
 
   .container {
     width: 1920px !important;
@@ -63,11 +64,11 @@ select {
     display: flex;
     justify-content: space-between;
     .navbar-brand {
-      @media only screen and (max-width: $mobileResolution) {
+      @media only screen and (max-width: 990px) {
         display: block !important;
       }
 
-      @media only screen and (max-width: 5000px) {
+      @media only screen and (min-width: 990px) {
         display: none;
       }
     }

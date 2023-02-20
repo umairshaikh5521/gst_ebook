@@ -3,6 +3,22 @@
   position: relative;
 }
 
+.notice {
+  background-color: red;
+  padding: 10px;
+  width: 100%;
+
+  background-color: red;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  color: #fff;
+  z-index: 1111;
+  text-align: center;
+}
+
 .get-started-btn {
   position: fixed;
   right: 0;
@@ -33,11 +49,17 @@
   // background: url("/assets/images/banner.jpg");
   background-color: $primary;
   background-size: cover;
-  min-height: 766px;
+  // min-height: 766px;
   max-width: 1920px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 26vw;
+  padding-top: 2rem;
+
+  @media only screen and (max-width: 650px) {
+    padding-bottom: 120px;
+  }
 
   .sectionTitle {
     font-weight: 700;
@@ -124,92 +146,14 @@
   .mySwiper-wrap {
     position: relative;
     position: absolute;
-    bottom: -60%;
+    bottom: -35%;
     width: 80%;
     z-index: 1;
     left: 0;
     right: 0;
     margin: auto;
-
-    @media only screen and (max-width: 5000px) {
-      bottom: -90%;
-    }
-
-    @media only screen and (max-width: 1920px) {
-      bottom: -90%;
-    }
-
-    @media only screen and (max-width: 1800px) {
-      bottom: -95%;
-      width: 90%;
-    }
-
-    @media only screen and (max-width: 1700px) {
-      bottom: -90%;
-    }
-
-    @media only screen and (max-width: 1600px) {
-      bottom: -82%;
-    }
-
-    @media only screen and (max-width: 1500px) {
-      bottom: -74%;
-    }
-
-    @media only screen and (max-width: 1400px) {
-      bottom: -65%;
-    }
-
-    @media only screen and (max-width: 1300px) {
-      width: 90%;
-      bottom: -60%;
-    }
-
-    @media only screen and (max-width: 1250px) {
-      bottom: -55%;
-    }
-
-    @media only screen and (max-width: 1150px) {
-      bottom: -50%;
-    }
-
-    @media only screen and (max-width: 1100px) {
-      bottom: -45%;
-    }
-
-    @media only screen and (max-width: $ipadProResolution) {
-      bottom: -37%;
-    }
-
-    @media only screen and (max-width: 1000px) {
-      width: 90%;
-      bottom: -35%;
-    }
-
-    @media only screen and (max-width: 900px) {
-      width: 90%;
-      bottom: -30%;
-    }
-
-    @media only screen and (max-width: 768px) {
-      bottom: -20%;
-      width: 90%;
-    }
-
-    @media only screen and (max-width: 500px) {
-      bottom: 3%;
-    }
-
-    @media only screen and (max-width: 450px) {
-      bottom: 2%;
-    }
-
-    @media only screen and (max-width: 350px) {
-      bottom: 7%;
-    }
-
-    @media only screen and (max-width: 305px) {
-      bottom: 10%;
+    @media only screen and (max-width: 650px) {
+      bottom: -25%;
     }
 
     .mySwiper {
@@ -269,32 +213,33 @@
       }
 
       .swiper-pagination {
-        bottom: 5%;
+        bottom: 0%;
         width: 20%;
         left: 50%;
         transform: translate(-50%);
+        width: auto;
 
-        @media only screen and (max-width: 600px) {
-          bottom: 4%;
-          left: 50%;
-          transform: translate(-50%);
-        }
+        // @media only screen and (max-width: 600px) {
+        //   bottom: 4%;
+        //   left: 50%;
+        //   transform: translate(-50%);
+        // }
 
-        @media only screen and (max-width: 500px) {
-          bottom: 5%;
-          left: 50%;
-          transform: translate(-50%);
-        }
+        // @media only screen and (max-width: 500px) {
+        //   bottom: 5%;
+        //   left: 50%;
+        //   transform: translate(-50%);
+        // }
 
-        @media only screen and (max-width: 450px) {
-          bottom: 6%;
-          left: 50%;
-          transform: translate(-50%);
-        }
+        // @media only screen and (max-width: 450px) {
+        //   bottom: 6%;
+        //   left: 50%;
+        //   transform: translate(-50%);
+        // }
 
-        @media only screen and (max-width: 400px) {
-          bottom: 4%;
-        }
+        // @media only screen and (max-width: 400px) {
+        //   bottom: 4%;
+        // }
 
         .swiper-pagination-bullet {
           width: 15px;
@@ -313,16 +258,27 @@
       }
 
       .swiper-wrapper {
+        padding-bottom: 4rem;
         .swiper-slide {
           display: flex;
           justify-content: center;
 
           .banner-image {
             width: 100%;
+            width: calc(100% - 10.4rem);
+
+            @media only screen and (max-width: 625px) {
+              width: 100%;
+              width: 290px;
+            }
           }
         }
       }
     }
+  }
+
+  .usk-navigation {
+    position: relative;
   }
 
   .shape1 {
@@ -357,25 +313,10 @@
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 17vw;
 
-  @media only screen and (max-width: 5000px) {
-    margin-top: 650px;
-  }
-
-  @media only screen and (max-width: 1920px) {
-    margin-top: 650px;
-  }
-
-  @media only screen and (max-width: 1400px) {
-    margin-top: 450px;
-  }
-
-  @media only screen and (max-width: $ipadProResolution) {
-    margin-top: 210px;
-  }
-
-  @media only screen and (max-width: 900px) {
-    margin-top: 250px;
+  @media only screen and (max-width: $mobileResolution) {
+    margin-top: 29vw;
   }
 
   .sectionTitle {
