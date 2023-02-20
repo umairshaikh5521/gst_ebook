@@ -215,6 +215,9 @@ a {
   }
 }
 @media only screen and (max-width: 700px) {
+  .banner-section .mySwiper-wrap .mySwiper .button-next {
+    display: none;
+  }
   .banner-section .mySwiper-wrap .mySwiper .button-next img {
     width: 40px;
     height: 40px;
@@ -251,6 +254,7 @@ a {
 @media only screen and (max-width: 500px) {
   .banner-section .mySwiper-wrap .mySwiper .button-prev {
     top: 85%;
+    display: none;
     left: calc(50% - 70px);
   }
   .banner-section .mySwiper-wrap .mySwiper .button-prev img {
@@ -277,7 +281,7 @@ a {
 }
 @media only screen and (max-width: 500px) {
   .banner-section .mySwiper-wrap .mySwiper .swiper-pagination .swiper-pagination-bullet-active {
-    background: #212121 !important;
+    background: #3393ff !important;
   }
 }
 .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper {
