@@ -58,6 +58,11 @@ a {
   text-align: center;
 }
 
+.banner-logo {
+  width: 150px;
+  margin: auto;
+}
+
 .get-started-btn {
   position: fixed;
   right: 0;
@@ -93,11 +98,11 @@ a {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 26vw;
-  padding-top: 2rem;
+  padding-top: 6rem;
 }
 @media only screen and (max-width: 650px) {
   .banner-section {
-    padding-bottom: 120px;
+    padding-bottom: 140px;
   }
 }
 .banner-section .sectionTitle {
@@ -109,7 +114,7 @@ a {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 132px;
+  padding-top: 32px;
   color: #fff;
 }
 @media only screen and (max-width: 800px) {
@@ -122,7 +127,7 @@ a {
 @media only screen and (max-width: 600px) {
   .banner-section .sectionTitle {
     margin-bottom: 20px;
-    padding-top: 85px;
+    padding-top: 25px;
   }
 }
 .banner-section p {
@@ -187,7 +192,7 @@ a {
 .banner-section .mySwiper-wrap {
   position: relative;
   position: absolute;
-  bottom: -35%;
+  bottom: -28%;
   width: 80%;
   z-index: 1;
   left: 0;
@@ -196,7 +201,7 @@ a {
 }
 @media only screen and (max-width: 650px) {
   .banner-section .mySwiper-wrap {
-    bottom: -25%;
+    bottom: -19%;
   }
 }
 .banner-section .mySwiper-wrap .mySwiper {
@@ -407,15 +412,15 @@ a {
 
 .about-us {
   margin-top: 250px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
   max-width: 1920px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 350px;
+  margin-top: 160px;
 }
 @media only screen and (max-width: 800px) {
   .about-us {
-    margin-top: 350px;
+    margin-top: 100px;
   }
 }
 .about-us .left-right-wrap {
@@ -735,6 +740,7 @@ a {
     font-size: 32px;
     line-height: 37px;
     width: 90%;
+    margin-bottom: 47px;
   }
 }
 
