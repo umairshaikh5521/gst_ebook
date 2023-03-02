@@ -98,11 +98,12 @@ a {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 26vw;
-  padding-top: 6rem;
+  padding-top: 8rem;
 }
 @media only screen and (max-width: 650px) {
   .banner-section {
     padding-bottom: 140px;
+    padding-top: 6rem;
   }
 }
 .banner-section .sectionTitle {
@@ -408,7 +409,7 @@ a {
 }
 
 .navbar-brand img {
-  max-height: 60px;
+  max-height: 100px;
 }
 
 .about-us {
@@ -1185,7 +1186,7 @@ select:focus {
   transition: 0.3s ease-in-out all;
   display: flex;
   align-items: center;
-  top: 44px;
+  top: 0px;
 }
 .navbar .container {
   width: 1920px !important;
