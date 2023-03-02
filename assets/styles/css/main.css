@@ -299,6 +299,7 @@ a {
 .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide .banner-image {
   width: 100%;
   width: calc(100% - 10.4rem);
+  max-width: 1220px;
 }
 @media only screen and (max-width: 625px) {
   .banner-section .mySwiper-wrap .mySwiper .swiper-wrapper .swiper-slide .banner-image {
