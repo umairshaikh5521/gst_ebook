@@ -976,7 +976,7 @@ The selected act/section/rule/regulation content will be automatically converted
             <img src="/assets/images/get-in-touch.png" alt="">
           </div>
           <div class="right">
-            <form id="lead-form" action="send_confirmation.php" method="post">
+            <form id="lead-form" action="emailer.php" method="post">
               <div class="row">
                 <div class="col">
                   <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Name" required>
@@ -1150,11 +1150,13 @@ The selected act/section/rule/regulation content will be automatically converted
 			
 			$('#lead-form').on('submit', function(e) {
 				
-				<!-- e.preventDefault(); -->
+				//e.preventDefault();
 				
-				return false;
-				
-				//this.submit();
+				if($('#lead-form').valid()) {
+					this.submit();
+				} else {
+					return false;
+				}
 			});
 		});
 	</script>
