@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	//$mail = new PHPMailer();
 	
-	$from = $_POST['email'];
+	$from = 'noreply@dealcube.in';
 	$subject = 'Thanks for reaching us';
 	$cc = 'antojas22@gmail.com';
 	
@@ -257,7 +257,7 @@ return '<!DOCTYPE html>
 														<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 															<tr>
 																<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-																	<div align="center" class="alignment" style="line-height:10px"><img alt="Surprised Users" src="assets/images/emailer/FACES.gif" style="display: block; height: auto; border: 0; width: 325px; max-width: 100%;" title="Surprised Users" width="325"/></div>
+																	<div align="center" class="alignment" style="line-height:10px"><img alt="Surprised Users" src="assets/images/emailer/people.jpg" style="display: block; height: auto; border: 0; width: 325px; max-width: 100%;" title="Surprised Users" width="325"/></div>
 																</td>
 															</tr>
 														</table>
