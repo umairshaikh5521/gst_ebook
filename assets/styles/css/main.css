@@ -1094,12 +1094,23 @@ a {
     margin-top: 50px;
   }
 }
+.get-in-touch .left-right-wrap .right form .row .col {
+  margin-bottom: 16px;
+}
 .get-in-touch .left-right-wrap .right form .row .col input {
   padding: 29px 41px;
   border: 0;
   background: #eff3fd;
   border-radius: 5px;
-  margin-bottom: 16px;
+  margin-bottom: 0;
+  min-height: 77px !important;
+  max-height: 77px !important;
+  font-size: 1rem;
+}
+@media only screen and (max-width: 767px) {
+  .get-in-touch .left-right-wrap .right form .row .col input {
+    padding: 9px 21px;
+  }
 }
 .get-in-touch .left-right-wrap .right form .row .col input::placeholder {
   font-weight: 500;
@@ -1108,13 +1119,13 @@ a {
   letter-spacing: 0.2px;
   color: #757575;
 }
-.get-in-touch .left-right-wrap .right form .row:nth-of-type(4) .col {
+.get-in-touch .left-right-wrap .right form .row:nth-of-type(5) .col {
   margin-bottom: 24px;
 }
-.get-in-touch .left-right-wrap .right form .row:nth-of-type(4) .col input {
+.get-in-touch .left-right-wrap .right form .row:nth-of-type(5) .col input {
   height: 180px;
 }
-.get-in-touch .left-right-wrap .right form .row:nth-of-type(4) .col input::placeholder {
+.get-in-touch .left-right-wrap .right form .row:nth-of-type(5) .col input::placeholder {
   text-align: start;
   margin-bottom: auto;
 }
@@ -1124,6 +1135,11 @@ a {
   border: 0;
   background: #eff3fd;
   border-radius: 5px;
+}
+@media only screen and (max-width: 767px) {
+  .get-in-touch .left-right-wrap .right form .form-control {
+    padding: 15px 21px;
+  }
 }
 .get-in-touch .left-right-wrap .right form a {
   padding: 15px 80px;
@@ -1145,6 +1161,36 @@ a {
   font-weight: 700;
   margin-bottom: 4px;
   text-decoration: underline;
+}
+
+label.error {
+  color: red;
+  font-size: 14px;
+}
+
+textarea {
+  margin-bottom: 0 !important;
+  color: #000;
+  font-size: 1rem;
+}
+@media only screen and (max-width: 767px) {
+  textarea {
+    padding: 9px 21px;
+    min-height: 10rem !important;
+  }
+}
+textarea::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.2px;
+  color: #757575;
+}
+
+.submit-btn {
+  width: 180px;
+  height: 54px;
+  border-radius: 5px;
 }
 
 body {
