@@ -11,6 +11,8 @@ $siteurl = "https://gst-ebook.com/";
 $sitename="GST E-Book";
 $mode = "live";/*live*/
 
+$googleCaptchaSecret = "6Lfgpm0lAAAAAA3Xtul8ishjBh0CiWjXWSZzs7yW";
+
 $sendemailid="info@gst-ebook.com";
 $emailsendername="GST E-Book";
 $copyrightname="GST E-Book";
@@ -51,12 +53,13 @@ if(isset($_POST) && !empty($_POST)) {
 		}
 		return $return;
 	}
-
+	
 	$name = escape($_POST['name']);
 	$email = escape($_POST['email']);
 	$phone = escape($_POST['mobile']);
 	$memberOf = escape($_POST['memberOf']);
 	$message = escape($_POST['description']);
+	$gRecaptchaResponse = escape($_POST['g-recaptcha-response']);
 
 	// UTM Source Data
 	// $utm_source = mysqli_real_escape_string($connection, trim($_POST['USOURCE']));
@@ -72,6 +75,11 @@ if(isset($_POST) && !empty($_POST)) {
 	//Validation begins
 	$errorStatus = 0;
 	$errmsg = '';
+	/*if($gRecaptchaResponse == "") {
+		$errorStatus = 1;
+		$errmsg .= 'Please verify that you are not a robot.';
+	}*/
+	// print_r('d'); die();
 	if($name == "") {
 		$errorStatus = 1;
 		$errmsg .= 'Name is required. ';
@@ -115,70 +123,91 @@ if(isset($_POST) && !empty($_POST)) {
 
 	}
 	
+	function getBrowser() {
+		$u_agent = $_SERVER['HTTP_USER_AGENT'];
+		$bname = 'Unknown';
+		$platform = 'Unknown';
+		$version= "";
+		if (preg_match('/linux/i', $u_agent)) {
+			$platform = 'linux';
+		} elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+			$platform = 'mac';
+		} elseif (preg_match('/windows|win32/i', $u_agent)) {
+			$platform = 'windows';
+		}
+
+		if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) {
+			$bname = 'Internet Explorer';
+			$ub = "MSIE";
+		} elseif(preg_match('/Firefox/i',$u_agent)) {
+			$bname = 'Mozilla Firefox';
+			$ub = "Firefox";
+		} elseif(preg_match('/Chrome/i',$u_agent)) {
+			$bname = 'Google Chrome'; 
+			$ub = "Chrome";
+		} elseif(preg_match('/Safari/i',$u_agent)) {
+			$bname = 'Apple Safari';
+			$ub = "Safari";
+		} elseif(preg_match('/Opera/i',$u_agent)) {
+			$bname = 'Opera';
+			$ub = "Opera";
+		} elseif(preg_match('/Netscape/i',$u_agent)) {
+			$bname = 'Netscape';
+			$ub = "Netscape";
+		}
+		$known = array('Version', $ub, 'other');
+		$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+		if (!preg_match_all($pattern, $u_agent, $matches)) {}
+		$i = count($matches['browser']);
+		if ($i != 1) {
+			if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
+				$version= $matches['version'][0];
+			} else {
+				$version= $matches['version'][1];
+			}
+		} else {
+			$version= $matches['version'][0];
+		}
+		if ($version==null || $version=="") {$version="?";}
+		return array(
+			'userAgent' => $u_agent,
+			'name'      => $bname,
+			'version'   => $version,
+			'platform'  => $platform,
+			'pattern'    => $pattern
+		);
+	}
+	
+	function verifyReCaptcha($googleCaptchaSecret, $gRecaptchaResponse, $ip_address) {
+	    $ch = curl_init();
+    	curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+    	curl_setopt($ch, CURLOPT_POST, true);
+    	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    	curl_setopt($ch, CURLOPT_POSTFIELDS,  http_build_query(array('secret' => $googleCaptchaSecret, 'response' => $gRecaptchaResponse, 'remoteip' => $ip_address)));
+    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    	$server_output = curl_exec($ch);
+    	curl_close($ch);
+    	if(isset($server_output)) {
+    	    $response = json_decode($server_output);
+    	    return (bool) ($response->success && $response->score >= 0.5); //score should be greater than or equal to .5
+    	} else {
+    	    return false;
+    	}
+    }
+		
+	$ua=getBrowser();
+	$browsername=$ua['name'];
+	$browserversion=$ua['version'];
+	$browserplatform=$ua['platform'];
+	$ip_address=$_SERVER['REMOTE_ADDR'];
+	$dateofreg = date('d-m-Y H:i:s');
+	
+	if(!verifyReCaptcha($googleCaptchaSecret, $gRecaptchaResponse, $ip_address)) {
+	    echo '<script>alert("Please resubmit your data.");history.go(-1);</script>';
+	}
+	
 	if($errorStatus == 0) {
 		
-		function getBrowser() {
-			$u_agent = $_SERVER['HTTP_USER_AGENT'];
-			$bname = 'Unknown';
-			$platform = 'Unknown';
-			$version= "";
-			if (preg_match('/linux/i', $u_agent)) {
-				$platform = 'linux';
-			} elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
-				$platform = 'mac';
-			} elseif (preg_match('/windows|win32/i', $u_agent)) {
-				$platform = 'windows';
-			}
-
-			if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) {
-				$bname = 'Internet Explorer';
-				$ub = "MSIE";
-			} elseif(preg_match('/Firefox/i',$u_agent)) {
-				$bname = 'Mozilla Firefox';
-				$ub = "Firefox";
-			} elseif(preg_match('/Chrome/i',$u_agent)) {
-				$bname = 'Google Chrome'; 
-				$ub = "Chrome";
-			} elseif(preg_match('/Safari/i',$u_agent)) {
-				$bname = 'Apple Safari';
-				$ub = "Safari";
-			} elseif(preg_match('/Opera/i',$u_agent)) {
-				$bname = 'Opera';
-				$ub = "Opera";
-			} elseif(preg_match('/Netscape/i',$u_agent)) {
-				$bname = 'Netscape';
-				$ub = "Netscape";
-			}
-			$known = array('Version', $ub, 'other');
-			$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-			if (!preg_match_all($pattern, $u_agent, $matches)) {}
-			$i = count($matches['browser']);
-			if ($i != 1) {
-				if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
-					$version= $matches['version'][0];
-				} else {
-					$version= $matches['version'][1];
-				}
-			} else {
-				$version= $matches['version'][0];
-			}
-			if ($version==null || $version=="") {$version="?";}
-			return array(
-				'userAgent' => $u_agent,
-				'name'      => $bname,
-				'version'   => $version,
-				'platform'  => $platform,
-				'pattern'    => $pattern
-			);
-		}
-			
-		$ua=getBrowser();
-		$browsername=$ua['name'];
-		$browserversion=$ua['version'];
-		$browserplatform=$ua['platform'];
-		$ip_address=$_SERVER['REMOTE_ADDR'];
-		$dateofreg = date('d-m-Y H:i:s');
-			
 		$mail = new PHPMailer(true);
 		$sendEmail = false;
 			try {

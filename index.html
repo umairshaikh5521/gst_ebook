@@ -1009,7 +1009,15 @@ The selected act/section/rule/regulation and cases content will be automatically
               <div class="mb-3">
                 <textarea class="form-control" placeholder="Description" name="description" id="description" rows="3" required></textarea>
               </div>
-              <button type="submit" class="btn-primary submit-btn">Send</button>
+              <!-- <div class="g-recaptcha" data-sitekey="6Lfgpm0lAAAAAE93FbFEjhlt6_8zs92en_xDdL2K" data-callback='onSubmit'></div><br /> -->
+              <!-- <div class="mb-3">
+                <input type="hidden" name="recaptcha-token" id="recaptcha-token" />
+              </div> -->
+              <!-- <button type="submit" class="btn-primary submit-btn">Send</button> -->
+              <button class="g-recaptcha btn-primary submit-btn" 
+        data-sitekey="6Lfgpm0lAAAAAE93FbFEjhlt6_8zs92en_xDdL2K" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
             </form>
           </div>
         </div>
@@ -1051,7 +1059,16 @@ The selected act/section/rule/regulation and cases content will be automatically
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+	<script>
+	function onSubmit(token) {
+			if($('#lead-form').valid()) {
+				document.getElementById("lead-form").submit();
+			} else {
+				return false;
+			}
+		}
+	</script>
   <script>
     var swiper = new Swiper(".mySwiper", {
       navigation: {
@@ -1108,7 +1125,7 @@ The selected act/section/rule/regulation and cases content will be automatically
   </script>
   
 	<script type="text/javascript">
-	<!--Start of Tawk.to Script-->
+	  <!--Start of Tawk.to Script-->
 		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 		(function(){
 			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -1138,6 +1155,7 @@ The selected act/section/rule/regulation and cases content will be automatically
 			);
 			
 			$('#lead-form').validate({
+				ignore: [],
 				rules: {
 					name: {
 						required: true,
@@ -1154,28 +1172,20 @@ The selected act/section/rule/regulation and cases content will be automatically
 						email: true,
 						regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
 					},
-          memberOf: {
-            required: true
-          },
+					memberOf: {
+						required: true
+					},
 					description: {
 						required: true
+					},
+					"recaptcha-token": {
+					  required: true
 					}
 				},
 				messages: {
 					email: {
 						regex: "Please enter a valid email address."
 					}
-				}
-			});
-			
-			$('#lead-form').on('submit', function(e) {
-				
-				//e.preventDefault();
-				
-				if($('#lead-form').valid()) {
-					this.submit();
-				} else {
-					return false;
 				}
 			});
 		});
