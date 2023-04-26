@@ -532,9 +532,6 @@ a {
   padding-bottom: 4rem;
 }
 .how-it-works .swiper-pagination2 {
-  bottom: 5%;
-  left: 50%;
-  transform: translateY(-14px);
   text-align: center;
 }
 .how-it-works .swiper-pagination2 .swiper-pagination-bullet {
