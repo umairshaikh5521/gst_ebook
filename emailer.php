@@ -1,421 +1,404 @@
-<?php
-require_once "vendor/autoload.php";
-use PHPMailer\PHPMailer\PHPMailer;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$Host = "mail.dealcube.in";
-	$Username = 'devtest@dealcube.in';
-	$Password = 'tsFFdsF*@l%{';
-	
-	
-	//$mail = new PHPMailer();
-	
-	$from = 'noreply@dealcube.in';
-	$subject = 'Thanks for reaching us';
-	$cc = 'antojas22@gmail.com';
-	
-	$to = $_POST['email'];
-	
-	
-	$mail = new PHPMailer; 
-	$mail->From = $from; 
-	$mail->FromName = "GST-ebook"; 
-	$mail->addAddress($to, $_POST['name']); //Provide file path and name of the attachments 
-	// $mail->addAttachment("file.txt", "File.txt");
-	$mail->IsSMTP();
-	$mail->Host = $Host;
-	$mail->SMTPAuth = true;
-	$mail->Username = $Username;
-	$mail->Password = $Password;
+<?php 
+require_once('phpmailer/src/PHPMailer.php');
+require_once('phpmailer/src/SMTP.php');
+require_once('phpmailer/src/Exception.php');
 
-	$mail->isHTML(true); 
-	$mail->Subject = $subject; 
-	$mail->Body = getMailBody(false);
-	// $mail->AltBody = "This is the plain text version of the email content"; 
-	if(!$mail->send())
-	{ 
-		echo "Mailer Error: " . $mail->ErrorInfo;
-	} 
-	else 
-	{ 
-		echo "Message has been sent successfully"; 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+date_default_timezone_set('Asia/Kolkata');
+
+$siteurl = "https://gst-ebook.com/";
+$sitename="GST E-Book";
+$mode = "live";/*live*/
+
+$googleCaptchaSecret = "6Lfgpm0lAAAAAA3Xtul8ishjBh0CiWjXWSZzs7yW";
+
+$sendemailid="info@gst-ebook.com";
+$emailsendername="GST E-Book";
+$copyrightname="GST E-Book";
+$bcc1="";
+$bcc2="";
+$cbcc1="support@gst-ebook.com";
+$cbcc2="";
+$testbcc1="";
+$testbcc2="";
+
+//Email Settings
+$emailHost = "mail.dealcube.in";
+$emailPort = "587";
+$emailUserName = "devtest@dealcube.in";
+$emailPassword = "tsFFdsF*@l%{";
+
+$adminSendEmailId = "info@gst-ebook.com";
+$adminSendEmailSenderName = "GST E-Book | Admin Report";
+$adminemail1 = "antojas22@gmail.com";
+$adminemail2 = "";
+
+$mailmessage="We have received your request, and one of our representative shall get back to you.";
+$thankyoupagemessage="We have received your request, and one of our representative shall get back to you with more information.";
+
+
+
+$referrer = isset($_POST['referer']) ? trim($_POST['referer']) : (isset($_SERVER['HTTP_REFERER']) ? base64_encode($_SERVER['HTTP_REFERER']) : false);//$_SERVER['HTTP_REFERER'];
+if(isset($_POST) && !empty($_POST)) {
+	function escape($value) {
+		$return = '';
+		for($i = 0; $i < strlen($value); ++$i) {
+			$char = $value[$i];
+			$ord = ord($char);
+			if($char !== "'" && $char !== "\"" && $char !== '\\' && $ord >= 32 && $ord <= 126)
+				$return .= $char;
+			else
+				$return .= '\\x' . dechex($ord);
+		}
+		return $return;
 	}
 	
-	$mail->addAddress($cc, "Admin");
-	$mail->Body = getMailBody(true);
-	if(!$mail->send())
-	{ 
-		echo "Mailer Error: " . $mail->ErrorInfo;
-	} 
-	else 
-	{ 
-		echo "Message has been sent successfully"; 
+	$name = escape($_POST['name']);
+	$email = escape($_POST['email']);
+	$phone = escape($_POST['mobile']);
+	$memberOf = escape($_POST['memberOf']);
+	$message = escape($_POST['description']);
+	$gRecaptchaResponse = escape($_POST['g-recaptcha-response']);
+
+	// UTM Source Data
+	// $utm_source = mysqli_real_escape_string($connection, trim($_POST['USOURCE']));
+	// $utm_medium = mysqli_real_escape_string($connection, trim($_POST['UMEDIUM']));
+	// $utm_campaign = mysqli_real_escape_string($connection, trim($_POST['UCAMPAIGN']));
+	// $utm_content = mysqli_real_escape_string($connection, trim($_POST['UCONTENT']));
+	// $utm_term = mysqli_real_escape_string($connection, trim($_POST['UTERM']));
+	// $utm_initial_referrer = mysqli_real_escape_string($connection, trim($_POST['IREFERRER']));
+	// $utm_last_referrer = mysqli_real_escape_string($connection, trim($_POST['LREFERRER']));
+	// $utm_landing_page = mysqli_real_escape_string($connection, trim($_POST['ILANDPAGE']));
+	// $utm_visite = mysqli_real_escape_string($connection, trim($_POST['VISITS']));
+
+	//Validation begins
+	$errorStatus = 0;
+	$errmsg = '';
+	/*if($gRecaptchaResponse == "") {
+		$errorStatus = 1;
+		$errmsg .= 'Please verify that you are not a robot.';
+	}*/
+	// print_r('d'); die();
+	if($name == "") {
+		$errorStatus = 1;
+		$errmsg .= 'Name is required. ';
+	} else if(!preg_match("/^[A-Za-z\-'., ]+$/", $name)) {
+		$errorStatus = 1;
+		$errmsg .= 'Enter a valid name. Only Alphabets accepted. ';
+	}
+
+	if($phone == "") {
+		$errorStatus = 1;
+		$errmsg .= 'Mobile Number is required. ';
+	} else if(!preg_match("/^[0]?[789]\d{9}$/", $phone)) {
+		$errorStatus = 1;
+		$errmsg .= 'Mobile Number should be a valid numberals. ';
+	} else if(strlen($phone) != 10) {
+		$errorStatus = 1;
+		$errmsg .= 'Mobile Number should contain 10 digits. ';
+	}
+
+	if($email == "") {
+		$errorStatus = 1;
+		$errmsg .= 'Email is required. ';
+	} elseif(!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email)) {
+		$errorStatus = 1;
+		$errmsg .= 'Enter a valid Email Address.';
 	}
 	
-	header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+	if($memberOf == "") {
+
+		$errorStatus = 1;
+
+		$errmsg .= 'Member of field is required. ';
+
+	}
 	
-}
+	if($message == "") {
+
+		$errorStatus = 1;
+
+		$errmsg .= 'Message is required. ';
+
+	}
 	
-function getMailBody($isAdmin = false) {
-return '<!DOCTYPE html>
-<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
-	<head>
-		<title>GST-ebook</title>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-		<!--[if mso]>
-		<xml>
-			<o:OfficeDocumentSettings>
-				<o:PixelsPerInch>96</o:PixelsPerInch>
-				<o:AllowPNG/>
-			</o:OfficeDocumentSettings>
-		</xml>
-		<![endif]-->
-		<!--[if !mso]><!-->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
-		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css"/>
-		<!--<![endif]-->
-		<style>
-			* {
-			box-sizing: border-box;
+	function getBrowser() {
+		$u_agent = $_SERVER['HTTP_USER_AGENT'];
+		$bname = 'Unknown';
+		$platform = 'Unknown';
+		$version= "";
+		if (preg_match('/linux/i', $u_agent)) {
+			$platform = 'linux';
+		} elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+			$platform = 'mac';
+		} elseif (preg_match('/windows|win32/i', $u_agent)) {
+			$platform = 'windows';
+		}
+
+		if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) {
+			$bname = 'Internet Explorer';
+			$ub = "MSIE";
+		} elseif(preg_match('/Firefox/i',$u_agent)) {
+			$bname = 'Mozilla Firefox';
+			$ub = "Firefox";
+		} elseif(preg_match('/Chrome/i',$u_agent)) {
+			$bname = 'Google Chrome'; 
+			$ub = "Chrome";
+		} elseif(preg_match('/Safari/i',$u_agent)) {
+			$bname = 'Apple Safari';
+			$ub = "Safari";
+		} elseif(preg_match('/Opera/i',$u_agent)) {
+			$bname = 'Opera';
+			$ub = "Opera";
+		} elseif(preg_match('/Netscape/i',$u_agent)) {
+			$bname = 'Netscape';
+			$ub = "Netscape";
+		}
+		$known = array('Version', $ub, 'other');
+		$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+		if (!preg_match_all($pattern, $u_agent, $matches)) {}
+		$i = count($matches['browser']);
+		if ($i != 1) {
+			if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
+				$version= $matches['version'][0];
+			} else {
+				$version= $matches['version'][1];
 			}
-			body {
-			margin: 0;
-			padding: 0;
-			}
-			a[x-apple-data-detectors] {
-			color: inherit !important;
-			text-decoration: inherit !important;
-			}
-			#MessageViewBody a {
-			color: inherit;
-			text-decoration: none;
-			}
-			p {
-			line-height: inherit
-			}
-			.desktop_hide,
-			.desktop_hide table {
-			mso-hide: all;
-			display: none;
-			max-height: 0px;
-			overflow: hidden;
-			}
-			.image_block img+div {
-			display: none;
-			}
-			@media (max-width:670px) {
-			.desktop_hide table.icons-inner,
-			.social_block.desktop_hide .social-table {
-			display: inline-block !important;
-			}
-			.icons-inner {
-			text-align: center;
-			}
-			.icons-inner td {
-			margin: 0 auto;
-			}
-			.row-content {
-			width: 100% !important;
-			}
-			.mobile_hide {
-			display: none;
-			}
-			.stack .column {
-			width: 100%;
-			display: block;
-			}
-			.mobile_hide {
-			min-height: 0;
-			max-height: 0;
-			max-width: 0;
-			overflow: hidden;
-			font-size: 0px;
-			}
-			.desktop_hide,
-			.desktop_hide table {
-			display: table !important;
-			max-height: none !important;
-			}
-			}
-		</style>
-	</head>
-	<body style="background-color: #fbfbfb; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-		<table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fbfbfb;" width="100%">
-			<tbody>
+		} else {
+			$version= $matches['version'][0];
+		}
+		if ($version==null || $version=="") {$version="?";}
+		return array(
+			'userAgent' => $u_agent,
+			'name'      => $bname,
+			'version'   => $version,
+			'platform'  => $platform,
+			'pattern'    => $pattern
+		);
+	}
+	
+	function verifyReCaptcha($googleCaptchaSecret, $gRecaptchaResponse, $ip_address) {
+	    $ch = curl_init();
+    	curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+    	curl_setopt($ch, CURLOPT_POST, true);
+    	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+    	curl_setopt($ch, CURLOPT_POSTFIELDS,  http_build_query(array('secret' => $googleCaptchaSecret, 'response' => $gRecaptchaResponse, 'remoteip' => $ip_address)));
+    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    	$server_output = curl_exec($ch);
+    	curl_close($ch);
+    	if(isset($server_output)) {
+    	    $response = json_decode($server_output);
+    	    return (bool) ($response->success && $response->score >= 0.5); //score should be greater than or equal to .5
+    	} else {
+    	    return false;
+    	}
+    }
+		
+	$ua=getBrowser();
+	$browsername=$ua['name'];
+	$browserversion=$ua['version'];
+	$browserplatform=$ua['platform'];
+	$ip_address=$_SERVER['REMOTE_ADDR'];
+	$dateofreg = date('d-m-Y H:i:s');
+	
+	if(!verifyReCaptcha($googleCaptchaSecret, $gRecaptchaResponse, $ip_address)) {
+	    echo '<script>alert("Please resubmit your data.");history.go(-1);</script>';
+	}
+	
+	if($errorStatus == 0) {
+		
+		$mail = new PHPMailer(true);
+		$sendEmail = false;
+			try {
+				$mail = new PHPMailer();
+				$mail->IsSMTP();	// Comment this when mode is live to send email
+				$mail->Host = $emailHost;
+				$mail->port = $emailPort;
+				$mail->SMTPAuth = true;
+				// $mail->SMTPDebug = 1;
+				$mail->Username = $emailUserName;
+				$mail->Password = $emailPassword;
+				// $mail->SMTPSecure	 = 'SSL';		
+
+				$subject = $emailsendername.' : Information Received Successfully';
+				$toemail =  $email;
+				$toname = $name;
+				$mail->setFrom($sendemailid,$emailsendername, 0);
+				$mail->addAddress($toemail,$toname);
+				$mail->AddReplyTo($sendemailid,$emailsendername);
+				if($bcc1 != '') { $mail->AddBCC($bcc1,$emailsendername); }
+				if($bcc2 != '') { $mail->AddBCC($bcc2,$emailsendername); }
+				// if($bcc4 != '') { $mail->AddBCC($bcc4,$emailsendername); }
+				// if($bcc5 != '') { $mail->AddBCC($bcc5,$emailsendername); }
+
+				// $mail->isHTML(true); 
+				$mail->Subject = $subject;
+
+				$name = isset($name) ? "$name" : '';
+				$email = isset($email) ? "$email" : '';
+				$phone = isset($phone) ? "$phone" : '';
+				$message = isset($message) ? "$message" : '';
+				$memberOf = isset($memberOf) ? "$memberOf" : '';
+
+				$body1 = "<table width='100%' border='0'>
 				<tr>
-					<td>
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-							<tbody>
+					<td align='center'><table style='max-width:600px;margin:0 auto;width:100%; background-color:#f4f4f4; padding:13px;' cellpadding='0' cellspacing='0' border='0' width='600px'>
+						<tbody style='background-color:#fff;'>
+						<tr>
+							<a href='".$siteurl."' style='text-decoration:none;vertical-align:top;' target='_blank'>
+									GST E-Book
+								</a>
+						</tr>
+						<tr>
+							<td style='padding:30px;'><div style='font-size:26px;font-weight:bold;text-align:center;color:#000000;margin-bottom:20px;font-family:Tahoma, Geneva, sans-serif;'> Thank You, ".$name.".</div></td>
+						</tr>
+						<tr>
+							<td>
+								<table width='100%' border='0' cellspacing='0' cellpadding='0' style='max-width: 420px;margin: 0 auto;'>
+									<tr>
+									<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>Name</td>
+									<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$name."</td>
+									</tr>
+									<tr style='height: 5px;line-height: 0;'>
+									<td colspan='2'>&nbsp;</td>
+									</tr>
+									<tr>
+									<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>Email Address</td>
+									<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$email."</td>
+									</tr>
+									<tr style='height: 5px;line-height: 0;'>
+									<td colspan='2'>&nbsp;</td>
+									</tr>
+									<tr>
+									<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>Phone Number</td>
+									<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$phone."</td>
+									</tr>
+									<tr style='height: 5px;line-height: 0;'>
+									<td colspan='2'>&nbsp;</td>
+									</tr>
+									<tr>
+									<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>Member Of</td>
+									<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$memberOf."</td>
+									</tr>
+									<tr>
+									<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>Message</td>
+									<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$message."</td>
+									</tr>
+									<tr style='height: 5px;line-height: 0;'>
+									<td colspan='2'>&nbsp;</td>
+									</tr>";
+									
+									$adminBody ="";
+						$body2 = "
+							</table>
+							</td>
+						</tr>
+						<tr>
+							<td style='padding:30px;'><div style='font-size:14px;text-align:center;color:#000000;margin-bottom:20px;font-family:Tahoma, Geneva, sans-serif;'>".$mailmessage."</div></td>
+						</tr>
+						<tr>
+							<td><table width='100%' cellspacing='0' cellpadding='0' border='0' bgcolor='#F4F4F4' style='padding-bottom:17px;'>
+								<tbody>
 								<tr>
-									<td>
-										<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 650px;" width="650">
-											<tbody>
-												<tr>
-													<td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-														<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:20px;padding-left:10px;width:100%;padding-right:0px;">
-																	<div align="center" class="alignment" style="line-height:10px"><img alt="Logo" src="assets/images/emailer/logo.png" style="display: block; height: auto; border: 0; width: 130px; max-width: 100%;" title="Logo" width="130"/></div>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+									<td><table width='100%' cellspacing='0' cellpadding='0' border='0' style='padding:30px 4% 0px 4%;'>
+										<tbody>
+										<tr>
+											<td width='100%' align='center' style='padding-bottom: 15px;font-family: Tahoma,Geneva,sans-serif;'>&copy; 2017 ".$copyrightname."</td>
+										</tr>";
+										
+										$body2 .= "</tbody>
+									</table>
 									</td>
 								</tr>
-							</tbody>
-						</table>
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #175df1;" width="100%">
-							<tbody>
-								<tr>
-									<td>
-										<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 650px;" width="650">
-											<tbody>
-												<tr>
-													<td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="50%">
-														<div class="spacer_block" style="height:20px;line-height:20px;font-size:1px;"> </div>
-														<table border="0" cellpadding="0" cellspacing="0" class="divider_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad" style="padding-left:10px;padding-top:5px;">
-																	<div align="left" class="alignment">
-																		<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="80%">
-																			<tr>
-																				<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 6px solid #FFFFFF;"><span> </span></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="text_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:10px;padding-left:10px;padding-right:10px;padding-top:15px;">
-																	<div style="font-family: sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #ffffff; line-height: 1.2;">
-																			<p style="margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;"><span style="font-size:17px;color:#000000;background-color:#ffffff;"> GST-ebook</span></p>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="text_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad" style="padding-left:10px;padding-right:10px;">
-																	<div style="font-family: Arial, sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #ffffff; line-height: 1.2;">
-																			<p style="margin: 0; font-size: 30px; mso-line-height-alt: 36px;">Encyclopedia of Indian GST Laws</p>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="10" cellspacing="0" class="text_block block-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad">
-																	<div style="font-family: sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #ffffff; line-height: 1.2;">
-																			<p style="margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;">GST-ebook is content curation and continuing online Updating platform for professionals and beginners under GST Laws only.</p>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="text_block block-6" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:10px;padding-left:10px;padding-right:10px;">
-																	<div style="font-family: sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #f9c253; line-height: 1.2;">
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="button_block block-7" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:30px;padding-left:10px;padding-right:10px;text-align:left;">
-																	<div align="left" class="alignment">
-																		<!--[if mso]>
-																		<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://gst-ebook.com/" style="height:50px;width:163px;v-text-anchor:middle;" arcsize="8%" stroke="false" fillcolor="#f9c253">
-																			<w:anchorlock/>
-																			<v:textbox inset="0px,0px,0px,0px">
-																				<center style="color:#175df1; font-family:Arial, sans-serif; font-size:20px">
-																					<![endif]--><a href="https://gst-ebook.com/" style="text-decoration:none;display:inline-block;color:#175df1;background-color:#f9c253;border-radius:4px;width:auto;border-top:0px solid #EFA70F;font-weight:undefined;border-right:0px solid #EFA70F;border-bottom:0px solid #EFA70F;border-left:0px solid #EFA70F;padding-top:5px;padding-bottom:5px;font-family:Cabin, Arial, Helvetica Neue, Helvetica, sans-serif;font-size:20px;text-align:center;mso-border-alt:none;word-break:keep-all;" target="_blank"><span style="padding-left:20px;padding-right:20px;font-size:20px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break:break-word;"><span data-mce-style="" dir="ltr" style=""><strong><span data-mce-style="" dir="ltr" style="line-height: 40px;">Visit Website</span></strong></span></span></span></a>
-																					<!--[if mso]>
-																				</center>
-																			</v:textbox>
-																		</v:roundrect>
-																		<![endif]-->
-																	</div>
-																</td>
-															</tr>
-														</table>
-													</td>
-													<td class="column column-2" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="50%">
-														<table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-																	<div align="center" class="alignment" style="line-height:10px"><img alt="Surprised Users" src="assets/images/emailer/people.jpg" style="display: block; height: auto; border: 0; width: 325px; max-width: 100%;" title="Surprised Users" width="325"/></div>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						'.
-						getSecondaryBody($isAdmin)
-						.'
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-							<tbody>
-								<tr>
-									<td>
-										<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 650px;" width="650">
-											<tbody>
-												<tr>
-													<td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-														<div class="spacer_block" style="height:40px;line-height:40px;font-size:1px;"> </div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-6" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #175df1;" width="100%">
-							<tbody>
-								<tr>
-									<td>
-										<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; background-color: #175df1; width: 650px;" width="650">
-											<tbody>
-												<tr>
-													<td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 20px; padding-top: 15px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-														<table border="0" cellpadding="10" cellspacing="0" class="social_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad">
-																	<div align="center" class="alignment">
-																		<table border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;" width="184px">
-																			<tr>
-																				<td style="padding:0 7px 0 7px;"><a href="javascript:;" target="_blank"><img alt="Facebook" height="32" src="assets/images/emailer/facebook2x.png" style="display: block; height: auto; border: 0;" title="Facebook" width="32"/></a></td>
-																				<td style="padding:0 7px 0 7px;"><a href="javascript:;" target="_blank"><img alt="Twitter" height="32" src="assets/images/emailer/twitter2x.png" style="display: block; height: auto; border: 0;" title="Twitter" width="32"/></a></td>
-																				<td style="padding:0 7px 0 7px;"><a href="javascript:;" target="_blank"><img alt="Instagram" height="32" src="assets/images/emailer/instagram2x.png" style="display: block; height: auto; border: 0;" title="Instagram" width="32"/></a></td>
-																				<td style="padding:0 7px 0 7px;"><a href="javascript:;" target="_blank"><img alt="LinkedIn" height="32" src="assets/images/emailer/linkedin2x.png" style="display: block; height: auto; border: 0;" title="LinkedIn" width="32"/></a></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 					</td>
 				</tr>
-			</tbody>
-		</table>
-		<!-- End -->
-	</body>
-</html>';
-}
+				</table>";
+				$mail->MsgHTML( $body1 . $body2 );
+				$sendEmail = $mail->Send();	
+			} catch (Exception $e) {
+				echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+			}
 
-function getSecondaryBody($isAdmin) {
-	return 
-	$isAdmin ? '
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-							<tbody>
-								<tr>
-									<td>
-										<table align="center" border="1" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 400px;" width="400">
-											<tbody>
-												<tr>
-													<td>Name:</td>
-													<td>'. $_POST['name'] . '</td>
-												</tr>
-												<tr>
-													<td>Email:</td>
-													<td>'. $_POST['email'] . '</td>
-												</tr>
-												<tr>
-													<td>Contact No:</td>
-													<td>'. $_POST['mobile'] . '</td>
-												</tr>
-												<tr>
-													<td>Description:</td>
-													<td>'. $_POST['description'] . '</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-	'
-	:
-	'
-						<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-							<tbody>
-								<tr>
-									<td>
-										<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 650px;" width="650">
-											<tbody>
-												<tr>
-													<td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-														<table border="0" cellpadding="0" cellspacing="0" class="text_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:15px;padding-left:10px;padding-right:10px;padding-top:20px;">
-																	<div style="font-family: Arial, sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 16.8px; color: #393d47; line-height: 1.2;">
-																			<p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 16.8px;"><span style="font-size:18px;"><strong>Welcome!</strong></span></p>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="divider_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:10px;padding-left:10px;padding-right:10px;">
-																	<div align="center" class="alignment">
-																		<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="10%">
-																			<tr>
-																				<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 3px solid #F9C253;"><span> </span></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
-														</table>
-														<table border="0" cellpadding="0" cellspacing="0" class="text_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-															<tr>
-																<td class="pad" style="padding-bottom:10px;padding-left:10px;padding-right:10px;">
-																	<div style="font-family: Arial, sans-serif">
-																		<div class="" style="font-size: 14px; font-family: Cabin, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #175df1; line-height: 1.2;">
-																			<p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 16.8px;"><span style="font-size:38px;"><strong>Thanks for contacting</strong></span></p>
-																			<p style="margin: 0; font-size: 12px; text-align: center; mso-line-height-alt: 16.8px;"><span style="font-size:38px;"><strong>Our team will be in touch with you</strong></span></p>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-	';
+			if( $sendEmail == true ) {
+				if(isset($adminemail1) && $adminemail1 != '') {
+					$mail1 = new PHPMailer(true);
+					try {
+						$mail1 = new PHPMailer();
+						$mail1->IsSMTP();
+						$mail1->Host = $emailHost;
+						$mail1->port = $emailPort;
+						$mail1->SMTPAuth = true;
+						//$mail1->SMTPDebug = 1;
+						$mail1->Username = $emailUserName;
+						$mail1->Password = $emailPassword;
+						// $mail1->SMTPSecure = 'SSL';
+						$mail1->AddReplyTo($sendemailid,$emailsendername);
+						$mail1->isHTML(true);
+						$mail1->Subject = $subject;
+
+						$mail1->SetFrom($adminSendEmailId,$adminSendEmailSenderName);
+						$mail1->AddAddress($adminemail1,$adminSendEmailSenderName);
+						$mail1->MsgHTML( $body1 . $adminBody . $body2 );
+						$sendEmail = $mail1->Send();
+					} catch (Exception $e) {
+						echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+					}
+				}
+				if(isset($adminemail2) && $adminemail2 != '') {
+					$mail2 = new PHPMailer(true);
+					try {
+						$mail2 = new PHPMailer();
+						$mail2->IsSMTP();
+						$mail2->Host = $emailHost;
+						$mail2->port = $emailPort;
+						$mail2->SMTPAuth = true;
+						//$mail2->SMTPDebug = 1;
+						$mail2->Username = $emailUserName;
+						$mail2->Password = $emailPassword;
+						// $mail2->SMTPSecure = 'SSL';
+						$mail2->AddReplyTo($sendemailid,$emailsendername);
+						$mail2->isHTML(true);
+						$mail2->Subject = $subject;
+
+						$mail2->SetFrom($adminSendEmailId,$adminSendEmailSenderName);
+						$mail2->AddAddress($adminemail2,$adminSendEmailSenderName);
+						$mail2->MsgHTML( $body1 . $adminBody . $body2 );
+						$sendEmail = $mail2->Send();
+					} catch (Exception $e) {
+						echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+					}
+				}
+				if($mode != 'test') {
+					echo '<script>window.location="'.$siteurl.'?reg=success"</script>';
+					// echo '{ "alert": "success", "message": "Success!<br><br><strong>Reason:</strong><br>' . $thankyoupagemessage . ' " }';
+				} else {
+					echo '<script>window.location="'.$siteurl.'?reg=success"</script>';
+					// echo '{ "alert": "success", "message": "Success!<br><br><strong>Reason:</strong><br>' . $thankyoupagemessage . ' " }';
+					// echo 'Success';
+				}
+			} else {
+				if($mode != 'test') {
+					//echo '<script>window.location="'.$siteurl . "contact-us/".'?reg=email-error"</script>';
+					echo '{ "alert": "warning", "message": "Email Failed!<br><br><strong>Reason:</strong><br>We captured your information but can\'t able to send confirmation mail" }';
+				} else {
+					echo 'Email Fails<br/>' . $mail->ErrorInfo;
+				}
+			}
+
+		} else {
+			if($mode != 'test') {
+				//echo '<script>window.location="'.$siteurl . "contact-us/".'?reg=data-insertion-error"</script>';
+				echo '{ "alert": "error", "message": "Registration Failed!<br><br><strong>Reason:</strong><br>Error during insertion of data." }';
+			} else {
+				echo 'Data fails to insert into DB';
+			}
+		}
 }
-?>
+ ?>
