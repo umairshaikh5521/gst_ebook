@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+g-recaptcha<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,7 +59,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Login/Register</a>
+            <a class="nav-link" aria-current="page" href="https://gst-ebook.com/app/auth/login/">Login/Register</a>
           </li>
         
           <li class="nav-item">
@@ -96,7 +96,7 @@
       ------------------------------------------------------------------------------------------------------------>
 
   <div class="home-page">
-    <a href="#" class="get-started-btn">
+    <a href="https://gst-ebook.com/app/auth/login/" class="get-started-btn">
       <span>G</span>
       <span>E</span>
       <span>T</span>
@@ -127,7 +127,7 @@
           <br>
           Introductory offer ₹ 500/Year
           </a>
-          <a href="#" class="btn-secondary">Subscribe Now</a>
+          <a href="https://gst-ebook.com/app/auth/login" class="btn-secondary">Subscribe Now</a>
         </div>
         <div class="mySwiper-wrap">
           <div class="swiper mySwiper">
@@ -1004,7 +1004,7 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <input type="text" class="form-control form-control-lg" name="memberOf" id="memberOf" placeholder="Member of (E.g. ICAI, ICSI, ICWAI, AIFTP, GSTPAM…..)" required>
+                  <input type="text" class="form-control form-control-lg" name="memberOf" id="memberOf" placeholder="Member of (E.g. ICAI, ICSI, ICWAI, AIFTP, GSTPAM…..)">
                 </div>
               </div>
               <div class="mb-3">
@@ -1014,7 +1014,7 @@
               <!-- <div class="mb-3">
                 <input type="hidden" name="recaptcha-token" id="recaptcha-token" />
               </div> -->
-              <!-- <button type="submit" class="btn-primary submit-btn">Send</button> -->
+              <!--<button type="submit" class="btn-primary submit-btn">Send</button>-->
               <button class="g-recaptcha btn-primary submit-btn" 
         data-sitekey="6Lfgpm0lAAAAAE93FbFEjhlt6_8zs92en_xDdL2K" 
         data-callback='onSubmit' 
@@ -1079,8 +1079,10 @@
       loop: true,
       keyboard: true,
       slidesPerView: 1,
+      autoplay: true,
       pagination: {
         el: ".swiper-pagination",
+        clickable: true
       },
     });
 
@@ -1093,8 +1095,10 @@
       keyboard: true,
       slidesPerView: 2,
       spaceBetween: 20,
+      autoplay: true,
       pagination: {
         el: ".swiper-pagination",
+        clickable: true
       },
       breakpoints: {
         100: {
@@ -1172,9 +1176,6 @@
 						required: true,
 						email: true,
 						regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
-					},
-					memberOf: {
-						required: true
 					},
 					description: {
 						required: true

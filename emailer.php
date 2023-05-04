@@ -7,31 +7,39 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 date_default_timezone_set('Asia/Kolkata');
 
-$siteurl = "https://gst-ebook.com/";
+$siteurl = "https://gst-ebooks.dealcube.in/"; // "https://gst-ebook.com/";
 $sitename="GST E-Book";
-$mode = "live";/*live*/
+$mode = "live";/*test*/
+// $mode = "test";/*live*/
 
 $googleCaptchaSecret = "6Lfgpm0lAAAAAA3Xtul8ishjBh0CiWjXWSZzs7yW";
 
-$sendemailid="info@gst-ebook.com";
+$sendemailid="gstebook@gmail.com";
 $emailsendername="GST E-Book";
 $copyrightname="GST E-Book";
-$bcc1="";
+$bcc1="umang@thecreativeocean.com";
 $bcc2="";
 $cbcc1="support@gst-ebook.com";
 $cbcc2="";
 $testbcc1="";
 $testbcc2="";
 
-//Email Settings
-$emailHost = "mail.dealcube.in";
+//Email Settings - Gmail
+$emailHost="smtp.gmail.com";
 $emailPort = "587";
+$emailUserName = "gstebook@gmail.com"; #"devtest@dealcube.in";
+$emailPassword = "vsgvvhmyjkgshgvk"; #"tsFFdsF*@l%{";
+
+/*//Dealcube Domain
+$emailHost="mail.dealcube.in";
+$emailPort = "465";
 $emailUserName = "devtest@dealcube.in";
 $emailPassword = "tsFFdsF*@l%{";
+*/
 
-$adminSendEmailId = "info@gst-ebook.com";
-$adminSendEmailSenderName = "GST E-Book | Admin Report";
-$adminemail1 = "antojas22@gmail.com";
+$adminSendEmailId = "gstebook@gmail.com";
+$adminSendEmailSenderName = "GST E-Book | Enquiry";
+$adminemail1 = "gstebook@gmail.com";
 $adminemail2 = "";
 
 $mailmessage="We have received your request, and one of our representative shall get back to you.";
@@ -107,13 +115,13 @@ if(isset($_POST) && !empty($_POST)) {
 		$errmsg .= 'Enter a valid Email Address.';
 	}
 	
-	if($memberOf == "") {
+	// if($memberOf == "") {
 
-		$errorStatus = 1;
+	// 	$errorStatus = 1;
 
-		$errmsg .= 'Member of field is required. ';
+	// 	$errmsg .= 'Member of field is required. ';
 
-	}
+	// }
 	
 	if($message == "") {
 
@@ -208,31 +216,37 @@ if(isset($_POST) && !empty($_POST)) {
 	
 	if($errorStatus == 0) {
 		
-		$mail = new PHPMailer(true);
+		//$mail = new PHPMailer(true);
 		$sendEmail = false;
 			try {
 				$mail = new PHPMailer();
-				$mail->IsSMTP();	// Comment this when mode is live to send email
+				$mail->isSMTP();	// Comment this when mode is live to send email
+				$mail->SMTPSecure ='tls';
+				$mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
 				$mail->Host = $emailHost;
-				$mail->port = $emailPort;
+				$mail->Port = $emailPort;
 				$mail->SMTPAuth = true;
-				// $mail->SMTPDebug = 1;
+				$mail->SMTPDebug = 0;
 				$mail->Username = $emailUserName;
 				$mail->Password = $emailPassword;
 				// $mail->SMTPSecure	 = 'SSL';		
 
-				$subject = $emailsendername.' : Information Received Successfully';
+				$subject = $emailsendername.' : New Lead Received';
 				$toemail =  $email;
 				$toname = $name;
 				$mail->setFrom($sendemailid,$emailsendername, 0);
 				$mail->addAddress($toemail,$toname);
-				$mail->AddReplyTo($sendemailid,$emailsendername);
-				if($bcc1 != '') { $mail->AddBCC($bcc1,$emailsendername); }
-				if($bcc2 != '') { $mail->AddBCC($bcc2,$emailsendername); }
+				//$mail->AddReplyTo($sendemailid,$emailsendername);
 				// if($bcc4 != '') { $mail->AddBCC($bcc4,$emailsendername); }
 				// if($bcc5 != '') { $mail->AddBCC($bcc5,$emailsendername); }
 
-				// $mail->isHTML(true); 
+				$mail->isHTML(true); 
 				$mail->Subject = $subject;
 
 				$name = isset($name) ? "$name" : '';
@@ -245,11 +259,11 @@ if(isset($_POST) && !empty($_POST)) {
 				<tr>
 					<td align='center'><table style='max-width:600px;margin:0 auto;width:100%; background-color:#f4f4f4; padding:13px;' cellpadding='0' cellspacing='0' border='0' width='600px'>
 						<tbody style='background-color:#fff;'>
-						<tr>
-							<a href='".$siteurl."' style='text-decoration:none;vertical-align:top;' target='_blank'>
-									GST E-Book
-								</a>
-						</tr>
+						<tr align='center'>
+        					<a href='".$siteurl."' style='text-decoration:none;vertical-align:top;' target='_blank'>
+        						<img src='".$siteurl."/assets/images/logo.png' style='max-height: 100px; max-width: 100px; text-align: center;' alt='GST E-Book'>
+        					</a>
+    					</tr>
 						<tr>
 							<td style='padding:30px;'><div style='font-size:26px;font-weight:bold;text-align:center;color:#000000;margin-bottom:20px;font-family:Tahoma, Geneva, sans-serif;'> Thank You, ".$name.".</div></td>
 						</tr>
@@ -289,7 +303,10 @@ if(isset($_POST) && !empty($_POST)) {
 									<td colspan='2'>&nbsp;</td>
 									</tr>";
 									
-									$adminBody ="";
+									$adminBody ="<tr>
+    								<td style='border-bottom:1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;font-weight: bold;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>IP Address</td>
+    								<td style='border-bottom: 1px solid #E4E4E4;font-size: 15px;padding-top: 9px;padding-bottom:9px;width: 50%;color: #999999;font-family: Tahoma,Geneva,sans-serif;'>".$ip_address."</td>
+    								</tr>";
 						$body2 = "
 							</table>
 							</td>
@@ -304,7 +321,7 @@ if(isset($_POST) && !empty($_POST)) {
 									<td><table width='100%' cellspacing='0' cellpadding='0' border='0' style='padding:30px 4% 0px 4%;'>
 										<tbody>
 										<tr>
-											<td width='100%' align='center' style='padding-bottom: 15px;font-family: Tahoma,Geneva,sans-serif;'>&copy; 2017 ".$copyrightname."</td>
+											<td width='100%' align='center' style='padding-bottom: 15px;font-family: Tahoma,Geneva,sans-serif;'>&copy; ".date('Y')." ".$copyrightname."</td>
 										</tr>";
 										
 										$body2 .= "</tbody>
@@ -331,9 +348,17 @@ if(isset($_POST) && !empty($_POST)) {
 					$mail1 = new PHPMailer(true);
 					try {
 						$mail1 = new PHPMailer();
-						$mail1->IsSMTP();
+						$mail1->isSMTP();
+						$mail1->SMTPSecure ='tls';
+						$mail1->SMTPOptions = array(
+                            'ssl' => array(
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            )
+                        );
 						$mail1->Host = $emailHost;
-						$mail1->port = $emailPort;
+						$mail1->Port = $emailPort;
 						$mail1->SMTPAuth = true;
 						//$mail1->SMTPDebug = 1;
 						$mail1->Username = $emailUserName;
@@ -342,6 +367,8 @@ if(isset($_POST) && !empty($_POST)) {
 						$mail1->AddReplyTo($sendemailid,$emailsendername);
 						$mail1->isHTML(true);
 						$mail1->Subject = $subject;
+						if($bcc1 != '') { $mail1->AddBCC($bcc1,$emailsendername); }
+				        if($bcc2 != '') { $mail1->AddBCC($bcc2,$emailsendername); }
 
 						$mail1->SetFrom($adminSendEmailId,$adminSendEmailSenderName);
 						$mail1->AddAddress($adminemail1,$adminSendEmailSenderName);
@@ -355,9 +382,17 @@ if(isset($_POST) && !empty($_POST)) {
 					$mail2 = new PHPMailer(true);
 					try {
 						$mail2 = new PHPMailer();
-						$mail2->IsSMTP();
+						$mail2->isSMTP();
+						$mail2->SMTPSecure ='tls';
+						$mail2->SMTPOptions = array(
+                            'ssl' => array(
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            )
+                        );
 						$mail2->Host = $emailHost;
-						$mail2->port = $emailPort;
+						$mail2->Port = $emailPort;
 						$mail2->SMTPAuth = true;
 						//$mail2->SMTPDebug = 1;
 						$mail2->Username = $emailUserName;
@@ -376,17 +411,17 @@ if(isset($_POST) && !empty($_POST)) {
 					}
 				}
 				if($mode != 'test') {
-					echo '<script>window.location="'.$siteurl.'?reg=success"</script>';
+					echo '<script>window.location="'.$siteurl.'thank-you.html"</script>';
 					// echo '{ "alert": "success", "message": "Success!<br><br><strong>Reason:</strong><br>' . $thankyoupagemessage . ' " }';
 				} else {
-					echo '<script>window.location="'.$siteurl.'?reg=success"</script>';
+					echo '<script>window.location="'.$siteurl.'thank-you.html"</script>';
 					// echo '{ "alert": "success", "message": "Success!<br><br><strong>Reason:</strong><br>' . $thankyoupagemessage . ' " }';
 					// echo 'Success';
 				}
 			} else {
 				if($mode != 'test') {
 					//echo '<script>window.location="'.$siteurl . "contact-us/".'?reg=email-error"</script>';
-					echo '{ "alert": "warning", "message": "Email Failed!<br><br><strong>Reason:</strong><br>We captured your information but can\'t able to send confirmation mail" }';
+					echo '<script>alert("Email Failed! We captured your information but can\'t able to send confirmation mail.");history.go(-1);</script>';
 				} else {
 					echo 'Email Fails<br/>' . $mail->ErrorInfo;
 				}
